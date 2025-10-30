@@ -20,8 +20,9 @@ import { sortByDate } from '../utils/helpers.js';
 // Get featured projects (first 3)
 const featuredProjects = getFeaturedProjects().slice(0, 3);
 
-// Get core team members (first 3)
+// Get team members (3 core + 3 non-core)
 const coreMembers = getCoreMembers().slice(0, 3);
+const contributors = members.filter(m => !m.core).slice(0, 3);
 
 // Get recent blog posts from markdown files
 const allBlogPosts = await Astro.glob('../content/posts/*.md');
@@ -149,9 +150,37 @@ const recentPosts = sortedBlogPosts.slice(0, 3).map(post => ({
         <p class="section-subtitle">The passionate individuals behind Kohaku Lab</p>
       </div>
 
+      <!-- Core Team Header -->
+      <div class="flex items-center gap-4 mb-6">
+        <div class="flex-1 h-px bg-slate-700"></div>
+        <span class="text-slate-500 text-sm uppercase tracking-wider">Core Team</span>
+        <div class="flex-1 h-px bg-slate-700"></div>
+      </div>
+
+      <!-- Core Members -->
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
         {coreMembers.map(member => <MemberCard client:visible member={member} />)}
       </div>
+
+      <!-- Members Divider -->
+      {
+        contributors.length > 0 && (
+          <>
+            <div class="flex items-center gap-4 my-8">
+              <div class="flex-1 h-px bg-slate-700" />
+              <span class="text-slate-500 text-sm uppercase tracking-wider">Members</span>
+              <div class="flex-1 h-px bg-slate-700" />
+            </div>
+
+            {/* Non-Core Members */}
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+              {contributors.map(member => (
+                <MemberCard client:visible member={member} />
+              ))}
+            </div>
+          </>
+        )
+      }
 
       <div class="text-center">
         <a href="/members" class="btn-primary">

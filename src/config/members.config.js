@@ -62,6 +62,31 @@ export const members = [
     location: 'Taiwan',
   },
   {
+    name: 'cybermeow',
+    role: 'Researcher',
+    avatar:
+      'https://cdn.discordapp.com/avatars/390582750270193664/ad90368a84d467a25f434ffe24f298a6.webp',
+    bio: 'Kawaii is justice. Working on whatever makes anime real.',
+    expertise: [
+      'make models that can generate cute anime girls',
+      'math and optimization when I was young',
+    ],
+    social: [
+      {
+        platform: 'github',
+        url: 'https://github.com/cyber-meow',
+        icon: 'i-carbon-logo-github',
+      },
+      {
+        platform: 'twitter (X)',
+        url: 'https://x.com/alea31415',
+        icon: 'i-carbon-logo-twitter',
+      },
+    ],
+    core: false,
+    location: 'Tokyo',
+  },
+  {
     name: 'theblackcat',
     role: 'Developer',
     avatar:
@@ -89,34 +114,8 @@ export const members = [
     location: 'Taiwan',
   },
   {
-    name: 'CMander',
-    role: 'Member',
-    avatar: '',
-    bio: 'Evolve together with agents.',
-    expertise: ['Large Language Models', 'Agent', 'Agentic RL', 'Python', 'Open Source'],
-    social: [
-      {
-        platform: 'github',
-        url: 'https: //github.com/CMander02',
-        icon: 'i-carbon-logo-github',
-      },
-      {
-        platform: 'huggingface',
-        url: 'https: //huggingface.co/CMander02',
-        icon: 'i-carbon-model',
-      },
-      {
-        platform: 'website',
-        url: '',
-        icon: 'i-carbon-earth',
-      },
-    ],
-    core: false,
-    location: 'Shanghai, China',
-  },
-  {
     name: 'Tauska (Xuehai Wang)',
-    role: 'Machine Learning Engineer — LLM Post-Training & Data Engineering',
+    role: 'ML Engineer',
     avatar: '/assets/members/tauska.jpg',
     bio: 'Machine-learning engineer focused on agentic LLM systems for healthcare. Maintainer of OmicVerse and related open-source tooling. Health Informatics (KI–SU). Committed to reproducible, privacy-aware, open science.',
     expertise: [
@@ -152,6 +151,27 @@ export const members = [
     location: 'Stockholm, Sweden',
   },
   {
+    name: 'CMander',
+    role: 'Member',
+    avatar: '/assets/members/yusc.png',
+    bio: 'Evolve together with agents.',
+    expertise: ['Large Language Models', 'Agent', 'Agentic RL', 'Python', 'Open Source'],
+    social: [
+      {
+        platform: 'github',
+        url: 'https: //github.com/CMander02',
+        icon: 'i-carbon-logo-github',
+      },
+      {
+        platform: 'huggingface',
+        url: 'https: //huggingface.co/CMander02',
+        icon: 'i-carbon-model',
+      },
+    ],
+    core: false,
+    location: 'Shanghai, China',
+  },
+  {
     name: 'ntrwansui',
     role: 'Member',
     avatar: 'https://cdn.xinhe-info.cn/dev/2bfee3986f30f2ee7fa4b2a9d4f12355.png',
@@ -181,30 +201,6 @@ export const members = [
     social: [],
     core: false,
     location: 'Newcastle',
-  },
-  {
-    name: 'cybermeow',
-    role: 'researcher',
-    avatar: '/assets/members/cybermeow.jpg (just a placeholder)',
-    bio: 'Kawaii is justice. Working on whatever makes anime real.',
-    expertise: [
-      'make models that can generate cute anime girls',
-      'math and optimization when I was young',
-    ],
-    social: [
-      {
-        platform: 'github',
-        url: 'https://github.com/cyber-meow',
-        icon: 'i-carbon-logo-github',
-      },
-      {
-        platform: 'website',
-        url: 'https://www.cyber-meow.com/',
-        icon: 'i-carbon-earth',
-      },
-    ],
-    core: false,
-    location: 'Tokyo',
   },
   // Add more members here as the team grows
 ];

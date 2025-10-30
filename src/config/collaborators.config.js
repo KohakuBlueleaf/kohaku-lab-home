@@ -31,7 +31,7 @@ export const collaborators = [
     name: 'Comfy Org',
     description:
       'Partnership to promote open-source AI development and democratize access to ML tools.',
-    logoUrl: '/assets/collaborators/open-ai-initiative.png',
+    logoUrl: 'https://framerusercontent.com/images/3cNQMWKzIhIrQ5KErBm7dSmbd2w.png',
     websiteUrl: 'https://www.comfy.org',
     tags: ['Open Source', 'Community'],
     active: true,
