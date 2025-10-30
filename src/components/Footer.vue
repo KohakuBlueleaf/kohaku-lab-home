@@ -13,8 +13,7 @@
             <span class="text-xl font-bold gradient-text"> Kohaku Lab </span>
           </div>
           <p class="text-slate-400 text-sm leading-relaxed">
-            A virtual lab made by AI/ML enthusiasts. Powered by passion - building tools we love and
-            sharing them with everyone.
+            {{ tagline }}
           </p>
         </div>
 
@@ -76,11 +75,7 @@
       <div
         class="pt-8 border-t border-slate-800 flex flex-col sm:flex-row justify-between items-center gap-4"
       >
-        <p class="text-slate-400 text-sm">
-          &copy; {{ currentYear }} Kohaku Lab. Built with
-          <span class="text-red-400">♥</span>
-          by enthusiasts
-        </p>
+        <p class="text-slate-400 text-sm">&copy; {{ currentYear }} {{ copyrightText }}</p>
         <div class="flex gap-6 text-sm">
           <a href="/about" class="text-slate-400 hover:text-white transition-colors"> About </a>
           <a
@@ -100,49 +95,12 @@
 
 <script setup>
 import { computed } from 'vue';
+import { footer, socialLinks } from '../config/site.config.js';
 
-/**
- * Quick navigation links
- */
-const quickLinks = [
-  { label: 'Home', href: '/' },
-  { label: 'Projects', href: '/projects' },
-  { label: 'Blog', href: '/blog' },
-  { label: 'Members', href: '/members' },
-  { label: 'About', href: '/about' },
-  { label: 'Contact', href: '/contact' },
-];
-
-/**
- * Featured projects for footer
- */
-const featuredProjects = [
-  { label: 'KohakuHub', href: 'https://github.com/KohakuBlueleaf/KohakuHub' },
-  { label: 'KohakuBoard', href: 'https://github.com/KohakuBlueleaf/KohakuBoard' },
-  { label: 'HDM', href: 'https://github.com/KohakuBlueleaf/HDM' },
-  { label: 'LyCORIS', href: 'https://github.com/KohakuBlueleaf/LyCORIS' },
-];
-
-/**
- * Social media links
- */
-const socialLinks = [
-  {
-    platform: 'GitHub',
-    url: 'https://github.com/KohakuBlueleaf',
-    icon: 'i-carbon-logo-github',
-  },
-  {
-    platform: 'Twitter',
-    url: 'https://twitter.com/KohakuBlueleaf',
-    icon: 'i-carbon-logo-twitter',
-  },
-  {
-    platform: 'Website',
-    url: 'https://kblueleaf.net',
-    icon: 'i-carbon-earth',
-  },
-];
+const quickLinks = footer.quickLinks;
+const featuredProjects = footer.featuredProjects;
+const tagline = footer.tagline;
+const copyrightText = footer.copyright;
 
 /**
  * Current year for copyright

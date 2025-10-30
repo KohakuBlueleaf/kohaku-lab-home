@@ -1,5 +1,5 @@
 <template>
-  <article class="card-interactive group">
+  <a :href="`/blog/${post.slug}`" class="card-interactive group block">
     <!-- Thumbnail -->
     <div
       v-if="post.thumbnail"
@@ -54,16 +54,15 @@
         </span>
       </div>
 
-      <!-- Read More Link -->
-      <a
-        :href="`/blog/${post.slug}`"
-        class="inline-flex items-center gap-2 text-blue-400 hover:text-blue-300 transition-colors font-medium text-sm"
+      <!-- Read indicator -->
+      <div
+        class="inline-flex items-center gap-2 text-blue-400 group-hover:text-blue-300 transition-colors font-medium text-sm"
       >
-        <span>Read More</span>
-        <span class="i-carbon-arrow-right"></span>
-      </a>
+        <span>Read Article</span>
+        <span class="i-carbon-arrow-right group-hover:translate-x-1 transition-transform"></span>
+      </div>
     </div>
-  </article>
+  </a>
 </template>
 
 <script setup>

@@ -26,7 +26,7 @@
 
           <!-- GitHub Link -->
           <a
-            href="https://github.com/KohakuBlueleaf"
+            :href="githubLink"
             target="_blank"
             rel="noopener noreferrer"
             class="text-slate-300 hover:text-white transition-colors"
@@ -72,7 +72,7 @@
 
             <!-- GitHub Link for Mobile -->
             <a
-              href="https://github.com/KohakuBlueleaf"
+              :href="githubLink"
               target="_blank"
               rel="noopener noreferrer"
               class="text-slate-300 hover:text-white transition-colors py-2 flex items-center gap-2"
@@ -89,19 +89,10 @@
 
 <script setup>
 import { ref, onMounted } from 'vue';
+import { navLinks, socialLinks } from '../config/site.config.js';
 
-/**
- * Navigation links configuration
- */
-const navLinks = [
-  { label: 'Home', href: '/' },
-  { label: 'Projects', href: '/projects' },
-  { label: 'Blog', href: '/blog' },
-  { label: 'Members', href: '/members' },
-  { label: 'Collaborators', href: '/collaborators' },
-  { label: 'About', href: '/about' },
-  { label: 'Contact', href: '/contact' },
-];
+const githubLink =
+  socialLinks.find(link => link.platform === 'GitHub')?.url || 'https://github.com/KohakuBlueleaf';
 
 const mobileMenuOpen = ref(false);
 const currentPath = ref('');

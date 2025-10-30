@@ -1,13 +1,14 @@
 <template>
-  <div
-    class="card-interactive group"
+  <a
+    :href="`/projects/${project.slug}`"
+    class="card-interactive group block"
     data-project-card
     :data-project-tags="JSON.stringify(project.tags.map(t => t.name))"
   >
     <!-- Project Image -->
     <div
       v-if="project.image"
-      class="relative overflow-hidden rounded-md mb-4 aspect-video bg-slate-700"
+      class="relative overflow-hidden rounded-md mb-4 aspect-[2.4/1] bg-slate-700"
     >
       <img
         :src="project.image.src"
@@ -37,16 +38,15 @@
         <TagBadge v-for="(tag, index) in project.tags" :key="index" :tag="tag" />
       </div>
 
-      <!-- Link -->
-      <a
-        :href="`/projects/${project.slug}`"
-        class="inline-flex items-center gap-2 text-blue-400 hover:text-blue-300 transition-colors font-medium text-sm"
+      <!-- Link Indicator -->
+      <div
+        class="inline-flex items-center gap-2 text-blue-400 group-hover:text-blue-300 transition-colors font-medium text-sm"
       >
         <span>View Details</span>
-        <span class="i-carbon-arrow-right"></span>
-      </a>
+        <span class="i-carbon-arrow-right group-hover:translate-x-1 transition-transform"></span>
+      </div>
     </div>
-  </div>
+  </a>
 </template>
 
 <script setup>
@@ -67,6 +67,7 @@ import TagBadge from './TagBadge.vue';
 
 /**
  * @typedef {Object} Project
+ * @property {string} slug - Project slug
  * @property {string} name - Project name
  * @property {string} description - Project description
  * @property {string} link - Project link

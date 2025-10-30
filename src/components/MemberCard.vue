@@ -25,7 +25,7 @@
         <h3 class="text-xl font-semibold text-slate-100 mb-1">
           {{ member.name }}
         </h3>
-        <p class="text-blue-400 text-sm mb-2">
+        <p class="text-blue-400 text-sm mb-2 whitespace-pre-line">
           {{ member.role }}
         </p>
         <p v-if="member.location" class="text-slate-400 text-xs flex items-center gap-1">
@@ -34,13 +34,16 @@
         </p>
       </div>
 
-      <!-- Expand Icon -->
-      <div class="flex-shrink-0">
+      <!-- Expand Icon with Hint -->
+      <div class="flex-shrink-0 flex flex-col items-center gap-1">
         <span
           class="text-slate-400 text-xl transition-transform"
           :class="{ 'rotate-180': isExpanded }"
         >
           <span class="i-carbon-chevron-down"></span>
+        </span>
+        <span class="text-slate-500 text-[10px] uppercase tracking-wide">
+          {{ isExpanded ? 'Close' : 'Details' }}
         </span>
       </div>
     </div>
