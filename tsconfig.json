@@ -15,8 +15,14 @@
     "noFallthroughCasesInSwitch": false,
     "allowJs": true,
     "checkJs": false,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "noEmit": true,
+    "isolatedModules": true,
+    "exactOptionalPropertyTypes": false
   },
   "include": [".astro/types.d.ts", "**/*"],
-  "exclude": ["dist", "node_modules"]
+  "exclude": ["dist", "node_modules"],
+  "vueCompilerOptions": {
+    "strictTemplates": false
+  }
 }

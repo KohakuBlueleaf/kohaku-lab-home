@@ -172,6 +172,40 @@ export const members = [
     core: false,
     location: 'Shanghai, China',
   },
+  {
+    name: 'WYFlynn',
+    role: 'Member',
+    avatar: '/assets/members/wyfl.png',
+    bio: 'Specialising in serious games research within HCI, with a passion for gaming and design. Regularly developing game demos for these purposes. Current Research Direction: Edu-games and Audience Participation Games.',
+    expertise: ['HCI', 'Serious game', 'Edu-games', 'APGs', 'Game Design'],
+    social: [],
+    core: false,
+    location: 'Newcastle',
+  },
+  {
+    name: 'cybermeow',
+    role: 'researcher',
+    avatar: '/assets/members/cybermeow.jpg (just a placeholder)',
+    bio: 'Kawaii is justice. Working on whatever makes anime real.',
+    expertise: [
+      'make models that can generate cute anime girls',
+      'math and optimization when I was young',
+    ],
+    social: [
+      {
+        platform: 'github',
+        url: 'https://github.com/cyber-meow',
+        icon: 'i-carbon-logo-github',
+      },
+      {
+        platform: 'website',
+        url: 'https://www.cyber-meow.com/',
+        icon: 'i-carbon-earth',
+      },
+    ],
+    core: false,
+    location: 'Tokyo',
+  },
   // Add more members here as the team grows
 ];
 
