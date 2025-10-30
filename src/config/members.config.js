@@ -77,12 +77,12 @@ export const members = [
     social: [
       {
         platform: 'github',
-        url: 'https: //github.com/narugo1992',
+        url: 'https://github.com/narugo1992',
         icon: 'i-carbon-logo-github',
       },
       {
         platform: 'huggingface',
-        url: 'https: //huggingface.co/narugo1992',
+        url: 'https://huggingface.co/narugo1992',
         icon: 'i-carbon-model',
       },
     ],
