@@ -39,12 +39,10 @@
 
       <!-- Link -->
       <a
-        :href="project.link"
-        target="_blank"
-        rel="noopener noreferrer"
+        :href="`/projects/${project.slug}`"
         class="inline-flex items-center gap-2 text-blue-400 hover:text-blue-300 transition-colors font-medium text-sm"
       >
-        <span>View Project</span>
+        <span>View Details</span>
         <span class="i-carbon-arrow-right"></span>
       </a>
     </div>

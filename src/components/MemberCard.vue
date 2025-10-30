@@ -28,12 +28,10 @@
         <p class="text-blue-400 text-sm mb-2">
           {{ member.role }}
         </p>
-        {member.location && (
-        <p class="text-slate-400 text-xs flex items-center gap-1">
+        <p v-if="member.location" class="text-slate-400 text-xs flex items-center gap-1">
           <span class="i-carbon-location"></span>
           {{ member.location }}
         </p>
-        )}
       </div>
 
       <!-- Expand Icon -->

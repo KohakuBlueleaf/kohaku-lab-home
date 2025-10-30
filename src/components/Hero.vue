@@ -52,22 +52,24 @@
       <!-- Stats / Highlights -->
       <div class="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
         <div class="stat-item">
-          <div class="text-3xl sm:text-4xl font-bold gradient-text mb-2">{{ stats.projects }}+</div>
-          <div class="text-sm text-slate-400">Open Source Projects</div>
-        </div>
-        <div class="stat-item">
           <div class="text-3xl sm:text-4xl font-bold gradient-text mb-2">
-            {{ stats.contributors }}+
+            {{ stats.githubStars }}+
           </div>
-          <div class="text-sm text-slate-400">Contributors</div>
-        </div>
-        <div class="stat-item">
-          <div class="text-3xl sm:text-4xl font-bold gradient-text mb-2">{{ stats.stars }}+</div>
           <div class="text-sm text-slate-400">GitHub Stars</div>
         </div>
         <div class="stat-item">
+          <div class="text-3xl sm:text-4xl font-bold gradient-text mb-2">
+            {{ stats.downloads }}+
+          </div>
+          <div class="text-sm text-slate-400">HuggingFace Downloads</div>
+        </div>
+        <div class="stat-item">
+          <div class="text-3xl sm:text-4xl font-bold gradient-text mb-2">{{ stats.projects }}+</div>
+          <div class="text-sm text-slate-400">Active Projects</div>
+        </div>
+        <div class="stat-item">
           <div class="text-3xl sm:text-4xl font-bold gradient-text mb-2">100%</div>
-          <div class="text-sm text-slate-400">Open Source</div>
+          <div class="text-sm text-slate-400">Open Access</div>
         </div>
       </div>
     </div>
@@ -88,9 +90,9 @@ const props = defineProps({
   stats: {
     type: Object,
     default: () => ({
+      githubStars: '7K',
+      downloads: '2M',
       projects: 10,
-      contributors: 20,
-      stars: 500,
     }),
   },
 });

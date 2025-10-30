@@ -2,18 +2,17 @@
 /**
  * Base Layout
  * Main layout template for all pages
+ *
+ * @typedef {Object} Props
+ * @property {string} [title]
+ * @property {string} [description]
+ * @property {string} [image]
+ * @property {boolean} [noContainer]
  */
 
-export interface Props {
-  title?: string;
-  description?: string;
-  image?: string;
-  noContainer?: boolean;
-}
-
 const {
-  title = 'Kohaku Lab - Virtual Open Source AI Research Lab',
-  description = 'A virtual lab by AI/ML enthusiasts. Building open-source tools, conducting research, and democratizing AI technology.',
+  title = 'Kohaku Lab - Virtual AI/ML Lab by Enthusiasts',
+  description = 'A virtual lab made by AI/ML enthusiasts. Powered by passion. Creating openly accessible tools and having fun with AI/ML.',
   image = '/og-image.jpg',
   noContainer = false,
 } = Astro.props;

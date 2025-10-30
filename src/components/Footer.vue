@@ -13,8 +13,8 @@
             <span class="text-xl font-bold gradient-text"> Kohaku Lab </span>
           </div>
           <p class="text-slate-400 text-sm leading-relaxed">
-            A virtual lab by AI/ML enthusiasts. Building open-source tools and democratizing AI
-            technology.
+            A virtual lab made by AI/ML enthusiasts. Powered by passion - building tools we love and
+            sharing them with everyone.
           </p>
         </div>
 
@@ -77,8 +77,9 @@
         class="pt-8 border-t border-slate-800 flex flex-col sm:flex-row justify-between items-center gap-4"
       >
         <p class="text-slate-400 text-sm">
-          &copy; {{ currentYear }} Kohaku Lab. Open source and built with
+          &copy; {{ currentYear }} Kohaku Lab. Built with
           <span class="text-red-400">♥</span>
+          by enthusiasts
         </p>
         <div class="flex gap-6 text-sm">
           <a href="/about" class="text-slate-400 hover:text-white transition-colors"> About </a>

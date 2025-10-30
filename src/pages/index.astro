@@ -22,44 +22,25 @@ const featuredProjects = getFeaturedProjects().slice(0, 3);
 // Get core team members (first 3)
 const coreMembers = getCoreMembers().slice(0, 3);
 
-// Get recent blog posts (mock data for now - will be replaced with real posts)
-const recentPosts = [
-  {
-    title: 'Introducing Kohaku Lab',
-    description:
-      'Welcome to our virtual AI/ML research lab. Learn about our mission, projects, and how you can get involved in open-source AI development.',
-    pubDate: '2025-01-15',
-    slug: 'introducing-kohaku-lab',
-    tags: ['announcement', 'about'],
-    readingTime: 5,
-  },
-  {
-    title: 'Building HDM: Training Text-to-Image Models at Home',
-    description:
-      'Discover how we trained a high-quality text-to-image diffusion model using accessible hardware. A comprehensive guide to democratizing AI.',
-    pubDate: '2025-01-10',
-    slug: 'building-hdm',
-    thumbnail: '/assets/blog/hdm-thumb.jpg',
-    tags: ['AI', 'Stable Diffusion', 'Research'],
-    readingTime: 12,
-  },
-  {
-    title: 'LyCORIS: Advanced Fine-Tuning Techniques',
-    description:
-      'Exploring novel approaches to neural network fine-tuning that go beyond conventional LoRA methods, with improved efficiency and quality.',
-    pubDate: '2025-01-05',
-    slug: 'lycoris-advanced-fine-tuning',
-    thumbnail: '/assets/blog/lycoris-thumb.jpg',
-    tags: ['Neural Networks', 'Research', 'Tutorial'],
-    readingTime: 15,
-  },
-];
+// Get recent blog posts from markdown files
+const allBlogPosts = await Astro.glob('../content/posts/*.md');
+const sortedBlogPosts = sortByDate(allBlogPosts);
+const recentPosts = sortedBlogPosts.slice(0, 3).map(post => ({
+  title: post.frontmatter.title,
+  description: post.frontmatter.description,
+  pubDate: post.frontmatter.pubDate,
+  thumbnail: post.frontmatter.thumbnail,
+  tags: post.frontmatter.tags || [],
+  author: post.frontmatter.author,
+  slug: post.file.split('/').pop().replace('.md', ''),
+  readingTime: post.frontmatter.readingTime,
+}));
 
 // Stats for hero section
 const stats = {
+  githubStars: '7K', // Sum of all members' GitHub stars
+  downloads: '2M', // HuggingFace downloads
   projects: projects.length,
-  contributors: members.length,
-  stars: 1500, // This could be fetched from GitHub API in production
 };
 ---
 
@@ -104,19 +85,20 @@ const stats = {
           </h2>
           <div class="space-y-4 text-slate-300 leading-relaxed">
             <p>
-              Kohaku Lab is a <strong class="text-white">virtual research laboratory</strong> where AI/ML
-              enthusiasts from around the world come together to build innovative open-source tools and
-              conduct cutting-edge research.
+              Kohaku Lab is a <strong class="text-white">virtual lab made by enthusiasts</strong> who
+              love AI/ML. We met on the internet, collaborate across the globe, and build things we're
+              passionate about.
             </p>
             <p>
-              We believe in <strong class="text-white">democratizing AI technology</strong> by making
-              advanced tools accessible to everyone. Our team collaborates entirely online, proving that
-              groundbreaking work doesn't require a physical location.
+              There's no grand mission or formal structure here - just people who love what they do,
+              creating tools and sharing knowledge. We work on projects that excite us, learn
+              together, and make everything openly accessible.
             </p>
             <p>
-              From developing new training techniques to creating practical applications, we're
-              committed to pushing the boundaries of what's possible with AI while maintaining our
-              core value: <strong class="text-white">100% open source</strong>.
+              Powered by passion. From training diffusion models at home to building ML platforms,
+              we prove that you don't need a corporate lab or massive funding - just enthusiasm and
+              dedication. Everything we make is <strong class="text-white">100% open access</strong
+              >.
             </p>
           </div>
           <div class="mt-8">
@@ -141,8 +123,8 @@ const stats = {
             <div class="text-4xl mb-3">
               <span class="i-carbon-code text-green-400"></span>
             </div>
-            <h3 class="text-lg font-semibold text-white mb-2">Open Source</h3>
-            <p class="text-slate-400 text-sm">All our work is freely available to everyone</p>
+            <h3 class="text-lg font-semibold text-white mb-2">Open Access</h3>
+            <p class="text-slate-400 text-sm">Everything we create is freely accessible to all</p>
           </div>
 
           <div class="card hover:border-blue-500/50 transition-colors">

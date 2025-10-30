@@ -22,12 +22,10 @@
           <span class="i-carbon-calendar"></span>
           <time :datetime="post.pubDate">{{ formattedDate }}</time>
         </div>
-        {readingTime && (
-        <div class="flex items-center gap-1">
+        <div v-if="readingTime" class="flex items-center gap-1">
           <span class="i-carbon-time"></span>
           <span>{{ readingTime }} min read</span>
         </div>
-        )}
       </div>
 
       <!-- Title -->

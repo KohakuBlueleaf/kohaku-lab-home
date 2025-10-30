@@ -1,0 +1,203 @@
+---
+/**
+ * Individual Project Page
+ * Detailed view of a single project
+ */
+
+import Base from '../../layouts/Base.astro';
+import Navbar from '../../components/Navbar.vue';
+import Footer from '../../components/Footer.vue';
+import TagBadge from '../../components/TagBadge.vue';
+import MemberCard from '../../components/MemberCard.vue';
+import CollaboratorCard from '../../components/CollaboratorCard.vue';
+
+import { projects, getProjectBySlug } from '../../config/projects.config.js';
+import { members, getMemberByName } from '../../config/members.config.js';
+import { collaborators } from '../../config/collaborators.config.js';
+
+export async function getStaticPaths() {
+  return projects.map(project => ({
+    params: { slug: project.slug },
+  }));
+}
+
+const { slug } = Astro.params;
+const project = getProjectBySlug(slug);
+
+if (!project) {
+  return Astro.redirect('/404');
+}
+
+// Get member details
+const projectMembers = project.members
+  ? project.members.map(name => getMemberByName(name)).filter(Boolean)
+  : [];
+
+// Get collaborator details
+const projectCollaborators = project.collaborators
+  ? project.collaborators.map(name => collaborators.find(c => c.name === name)).filter(Boolean)
+  : [];
+---
+
+<Base
+  title={`${project.name} - ${project.subtitle} | Kohaku Lab`}
+  description={project.description}
+  image={project.thumbnail || project.image?.src}
+>
+  <!-- Navigation -->
+  <Navbar slot="nav" client:load />
+
+  <!-- Back Button -->
+  <div class="container-section py-6">
+    <a href="/projects" class="link inline-flex items-center gap-2">
+      <span class="i-carbon-arrow-left text-xl"></span>
+      Back to Projects
+    </a>
+  </div>
+
+  <!-- Project Header with Thumbnail -->
+  {
+    project.thumbnail && (
+      <section class="relative h-[400px] overflow-hidden">
+        <img src={project.thumbnail} alt={project.name} class="w-full h-full object-cover" />
+        <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/80 to-transparent" />
+        <div class="absolute inset-0 flex items-end">
+          <div class="container-section pb-12">
+            <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-3">
+              {project.name}
+            </h1>
+            <p class="text-xl sm:text-2xl gradient-text font-semibold">{project.subtitle}</p>
+          </div>
+        </div>
+      </section>
+    )
+  }
+
+  <!-- Project Info -->
+  <section class="section">
+    <div class="container-section">
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <!-- Main Content -->
+        <div class="lg:col-span-2">
+          {
+            !project.thumbnail && (
+              <div class="mb-8">
+                <h1 class="text-4xl sm:text-5xl font-bold text-white mb-3">{project.name}</h1>
+                <p class="text-xl gradient-text font-semibold">{project.subtitle}</p>
+              </div>
+            )
+          }
+
+          <!-- Description -->
+          <div class="card mb-8">
+            <h2 class="text-2xl font-bold text-slate-100 mb-4">About This Project</h2>
+            <p class="text-slate-300 leading-relaxed">{project.description}</p>
+          </div>
+
+          <!-- Tags -->
+          <div class="card">
+            <h2 class="text-2xl font-bold text-slate-100 mb-4">Technologies</h2>
+            <div class="flex flex-wrap gap-3">
+              {project.tags.map(tag => <TagBadge tag={tag} />)}
+            </div>
+          </div>
+        </div>
+
+        <!-- Sidebar -->
+        <div class="space-y-6">
+          <!-- Quick Info Card -->
+          <div class="card">
+            <h3 class="text-lg font-semibold text-slate-100 mb-4">Quick Info</h3>
+            <div class="space-y-3">
+              <a
+                href={project.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="btn-primary w-full justify-center"
+              >
+                <span class="i-carbon-logo-github"></span>
+                <span>View on GitHub</span>
+              </a>
+
+              {
+                project.image && (
+                  <div class="flex items-center justify-center p-6 bg-slate-700/30 rounded-lg">
+                    <img
+                      src={project.image.src}
+                      alt={project.image.alt}
+                      class="max-w-full max-h-32 object-contain"
+                    />
+                  </div>
+                )
+              }
+            </div>
+          </div>
+
+          <!-- Stats Card (if available) -->
+          <div class="card">
+            <h3 class="text-lg font-semibold text-slate-100 mb-4">Project Stats</h3>
+            <div class="space-y-2 text-sm">
+              <div class="flex items-center justify-between">
+                <span class="text-slate-400">Status</span>
+                <span class="text-green-400 font-medium">Active</span>
+              </div>
+              <div class="flex items-center justify-between">
+                <span class="text-slate-400">License</span>
+                <span class="text-slate-200">Open Access</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contributing Members -->
+  {
+    projectMembers.length > 0 && (
+      <section class="section bg-slate-950/50">
+        <div class="container-section">
+          <h2 class="text-2xl sm:text-3xl font-bold text-slate-100 mb-8">Contributing Members</h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {projectMembers.map(member => (
+              <MemberCard client:visible member={member} />
+            ))}
+          </div>
+        </div>
+      </section>
+    )
+  }
+
+  <!-- Engaged Collaborators -->
+  {
+    projectCollaborators.length > 0 && (
+      <section class="section">
+        <div class="container-section">
+          <h2 class="text-2xl sm:text-3xl font-bold text-slate-100 mb-8">Engaged Collaborators</h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {projectCollaborators.map(collaborator => (
+              <CollaboratorCard client:visible collaborator={collaborator} />
+            ))}
+          </div>
+        </div>
+      </section>
+    )
+  }
+
+  <!-- Related Projects CTA -->
+  <section class="section bg-slate-950/50">
+    <div class="container-narrow text-center">
+      <h2 class="text-2xl font-bold text-white mb-4">Explore More Projects</h2>
+      <p class="text-slate-300 mb-6">Check out our other open-access tools and research projects</p>
+      <a href="/projects" class="btn-primary">
+        <span class="i-carbon-folder"></span>
+        <span>View All Projects</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <slot name="footer">
+    <Footer client:load />
+  </slot>
+</Base>

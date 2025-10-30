@@ -1,0 +1,233 @@
+---
+/**
+ * Blog Index Page
+ * List all blog posts with pagination and filtering
+ */
+
+import Base from '../../layouts/Base.astro';
+import Navbar from '../../components/Navbar.vue';
+import Footer from '../../components/Footer.vue';
+import BlogPostCard from '../../components/BlogPostCard.vue';
+
+import { sortByDate, paginate } from '../../utils/helpers.js';
+
+// Get all blog posts from the content/posts directory
+const allPosts = await Astro.glob('../../content/posts/*.md');
+
+// Sort by date (newest first)
+const sortedPosts = sortByDate(allPosts);
+
+// Get current page from URL
+const currentPage = Number(Astro.url.searchParams.get('page')) || 1;
+const postsPerPage = 9;
+
+// Paginate posts
+const paginatedResult = paginate(sortedPosts, currentPage, postsPerPage);
+
+// Prepare posts for display
+const displayPosts = paginatedResult.items.map(post => ({
+  title: post.frontmatter.title,
+  description: post.frontmatter.description,
+  pubDate: post.frontmatter.pubDate,
+  thumbnail: post.frontmatter.thumbnail,
+  tags: post.frontmatter.tags || [],
+  author: post.frontmatter.author,
+  slug: post.file.split('/').pop().replace('.md', ''),
+  readingTime: post.frontmatter.readingTime,
+}));
+
+// Get all unique tags
+const allTags = new Set();
+allPosts.forEach(post => {
+  (post.frontmatter.tags || []).forEach(tag => allTags.add(tag));
+});
+const uniqueTags = Array.from(allTags).sort();
+
+// Get selected tag from URL
+const selectedTag = Astro.url.searchParams.get('tag');
+---
+
+<Base
+  title="Blog | Kohaku Lab"
+  description="Insights, tutorials, and updates from the Kohaku Lab team. Explore our latest articles on AI/ML, research, and open-source development."
+>
+  <!-- Navigation -->
+  <Navbar slot="nav" client:load />
+
+  <!-- Page Header -->
+  <section
+    class="py-12 bg-gradient-to-br from-blue-900/30 to-purple-900/30 border-b border-blue-500/20"
+  >
+    <div class="container-section text-center">
+      <h1 class="text-4xl sm:text-5xl font-bold mb-4">
+        <span class="gradient-text">Blog</span>
+      </h1>
+      <p class="text-lg text-slate-300 max-w-2xl mx-auto">
+        Insights, tutorials, and updates from the Kohaku Lab team
+      </p>
+    </div>
+  </section>
+
+  <!-- Search & Filter Section -->
+  <section class="section">
+    <div class="container-section">
+      <!-- Search Bar -->
+      <div class="mb-8">
+        <div class="max-w-2xl mx-auto">
+          <div class="relative">
+            <input
+              type="text"
+              id="search-input"
+              placeholder="Search posts by title or tags..."
+              class="input w-full pl-12"
+            />
+            <span
+              class="i-carbon-search absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 text-xl"
+            ></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tag Filters -->
+      <div class="mb-12">
+        <div class="flex flex-wrap gap-3 justify-center" id="tag-filters">
+          <button
+            class="tag bg-blue-600 text-white cursor-pointer hover:bg-blue-700 transition-colors filter-btn active"
+            data-tag="all"
+          >
+            All Posts
+          </button>
+          {
+            uniqueTags.map(tag => (
+              <button
+                class={`tag cursor-pointer transition-colors filter-btn ${selectedTag === tag ? 'bg-blue-600 text-white' : 'bg-slate-700 text-slate-200 hover:bg-slate-600'}`}
+                data-tag={tag}
+              >
+                #{tag}
+              </button>
+            ))
+          }
+        </div>
+      </div>
+
+      <!-- Posts Grid -->
+      <div id="posts-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+        {displayPosts.map(post => <BlogPostCard client:visible post={post} />)}
+      </div>
+
+      <!-- Empty State -->
+      <div id="empty-state" class="hidden text-center py-12">
+        <div class="text-6xl mb-4">
+          <span class="i-carbon-search-locate text-slate-600"></span>
+        </div>
+        <h3 class="text-2xl font-semibold text-slate-300 mb-2">No posts found</h3>
+        <p class="text-slate-400">Try adjusting your search or filters</p>
+      </div>
+
+      <!-- Pagination -->
+      {
+        paginatedResult.totalPages > 1 && (
+          <div class="flex justify-center items-center gap-4">
+            {paginatedResult.hasPrev && (
+              <a href={`/blog?page=${paginatedResult.currentPage - 1}`} class="btn-secondary">
+                <span class="i-carbon-arrow-left" />
+                <span>Previous</span>
+              </a>
+            )}
+
+            <div class="flex items-center gap-2">
+              {Array.from({ length: paginatedResult.totalPages }, (_, i) => i + 1).map(pageNum => (
+                <a
+                  href={`/blog?page=${pageNum}`}
+                  class={pageNum === paginatedResult.currentPage ? 'btn-primary' : 'btn-secondary'}
+                >
+                  {pageNum}
+                </a>
+              ))}
+            </div>
+
+            {paginatedResult.hasNext && (
+              <a href={`/blog?page=${paginatedResult.currentPage + 1}`} class="btn-secondary">
+                <span>Next</span>
+                <span class="i-carbon-arrow-right" />
+              </a>
+            )}
+          </div>
+        )
+      }
+    </div>
+  </section>
+
+  <!-- Client-Side Search & Filter Script -->
+  <script define:vars={{ displayPosts }}>
+    const searchInput = document.getElementById('search-input');
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const postsGrid = document.getElementById('posts-grid');
+    const emptyState = document.getElementById('empty-state');
+
+    let currentTag = 'all';
+    let searchQuery = '';
+
+    // Search functionality
+    if (searchInput) {
+      searchInput.addEventListener('input', e => {
+        searchQuery = e.target.value.toLowerCase();
+        filterPosts();
+      });
+    }
+
+    // Tag filter functionality
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        currentTag = btn.dataset.tag;
+
+        // Update active state
+        filterBtns.forEach(b => {
+          b.classList.remove('active', 'bg-blue-600', 'text-white');
+          b.classList.add('bg-slate-700', 'text-slate-200');
+        });
+        btn.classList.add('active', 'bg-blue-600', 'text-white');
+        btn.classList.remove('bg-slate-700', 'text-slate-200');
+
+        filterPosts();
+      });
+    });
+
+    function filterPosts() {
+      const postCards = postsGrid.querySelectorAll('article');
+      let visibleCount = 0;
+
+      postCards.forEach((card, index) => {
+        const post = displayPosts[index];
+        const matchesSearch =
+          !searchQuery ||
+          post.title.toLowerCase().includes(searchQuery) ||
+          post.description.toLowerCase().includes(searchQuery) ||
+          post.tags.some(tag => tag.toLowerCase().includes(searchQuery));
+
+        const matchesTag = currentTag === 'all' || post.tags.some(tag => tag === currentTag);
+
+        if (matchesSearch && matchesTag) {
+          card.style.display = 'block';
+          visibleCount++;
+        } else {
+          card.style.display = 'none';
+        }
+      });
+
+      // Show/hide empty state
+      if (visibleCount === 0) {
+        emptyState.classList.remove('hidden');
+        postsGrid.classList.add('hidden');
+      } else {
+        emptyState.classList.add('hidden');
+        postsGrid.classList.remove('hidden');
+      }
+    }
+  </script>
+
+  <!-- Footer -->
+  <slot name="footer">
+    <Footer client:load />
+  </slot>
+</Base>
