@@ -7,6 +7,10 @@
 import Base from '../../layouts/Base.astro';
 import Navbar from '../../components/Navbar.vue';
 import Footer from '../../components/Footer.vue';
+import { contactMethods } from '../../config/site.config.js';
+
+const availableContacts = contactMethods.filter(c => c.available);
+const upcomingContacts = contactMethods.filter(c => !c.available);
 ---
 
 <Base
@@ -34,61 +38,38 @@ import Footer from '../../components/Footer.vue';
   <section class="section">
     <div class="container-narrow">
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
-        <!-- Email -->
-        <a href="mailto:contact@kohaku-lab.example" class="card-interactive">
-          <div class="text-4xl mb-4">
-            <span class="i-carbon-email text-blue-400"></span>
-          </div>
-          <h3 class="text-xl font-semibold text-white mb-2">Email Us</h3>
-          <p class="text-slate-400 text-sm mb-3">
-            For general inquiries, collaboration proposals, or questions
-          </p>
-          <p class="text-blue-400 font-medium">contact@kohaku-lab.example</p>
-        </a>
+        <!-- Available Contact Methods -->
+        {
+          availableContacts.map(contact => (
+            <a
+              href={contact.url}
+              target={contact.url.startsWith('http') ? '_blank' : undefined}
+              rel={contact.url.startsWith('http') ? 'noopener noreferrer' : undefined}
+              class="card-interactive"
+            >
+              <div class="text-4xl mb-4">
+                <span class={`${contact.icon} ${contact.color}`} />
+              </div>
+              <h3 class="text-xl font-semibold text-white mb-2">{contact.label}</h3>
+              <p class="text-slate-400 text-sm mb-3">{contact.description}</p>
+              <p class="text-blue-400 font-medium">{contact.value}</p>
+            </a>
+          ))
+        }
 
-        <!-- GitHub -->
-        <a
-          href="https://github.com/KohakuBlueleaf"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="card-interactive"
-        >
-          <div class="text-4xl mb-4">
-            <span class="i-carbon-logo-github text-purple-400"></span>
-          </div>
-          <h3 class="text-xl font-semibold text-white mb-2">GitHub</h3>
-          <p class="text-slate-400 text-sm mb-3">
-            Check out our projects, report issues, or contribute code
-          </p>
-          <p class="text-blue-400 font-medium">@KohakuBlueleaf</p>
-        </a>
-
-        <!-- Discord/Community -->
-        <div class="card">
-          <div class="text-4xl mb-4">
-            <span class="i-carbon-chat text-green-400"></span>
-          </div>
-          <h3 class="text-xl font-semibold text-white mb-2">Community Chat</h3>
-          <p class="text-slate-400 text-sm mb-3">Join our community discussions (Coming soon)</p>
-          <p class="text-slate-500 font-medium">Discord/Slack link will be available soon</p>
-        </div>
-
-        <!-- Twitter/Social -->
-        <a
-          href="https://twitter.com/KohakuBlueleaf"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="card-interactive"
-        >
-          <div class="text-4xl mb-4">
-            <span class="i-carbon-logo-twitter text-cyan-400"></span>
-          </div>
-          <h3 class="text-xl font-semibold text-white mb-2">Social Media</h3>
-          <p class="text-slate-400 text-sm mb-3">
-            Follow us for updates, announcements, and insights
-          </p>
-          <p class="text-blue-400 font-medium">@KohakuBlueleaf</p>
-        </a>
+        <!-- Upcoming Contact Methods -->
+        {
+          upcomingContacts.map(contact => (
+            <div class="card">
+              <div class="text-4xl mb-4">
+                <span class={`${contact.icon} ${contact.color}`} />
+              </div>
+              <h3 class="text-xl font-semibold text-white mb-2">{contact.label}</h3>
+              <p class="text-slate-400 text-sm mb-3">{contact.description}</p>
+              <p class="text-slate-500 font-medium">{contact.value}</p>
+            </div>
+          ))
+        }
       </div>
 
       <!-- Additional Info -->

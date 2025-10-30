@@ -8,8 +8,8 @@ import Base from '../../layouts/Base.astro';
 import Navbar from '../../components/Navbar.vue';
 import Footer from '../../components/Footer.vue';
 import TagBadge from '../../components/TagBadge.vue';
-import MemberCard from '../../components/MemberCard.vue';
-import CollaboratorCard from '../../components/CollaboratorCard.vue';
+import MemberCardCompact from '../../components/MemberCardCompact.vue';
+import CollaboratorCardCompact from '../../components/CollaboratorCardCompact.vue';
 
 import { projects, getProjectBySlug } from '../../config/projects.config.js';
 import { members, getMemberByName } from '../../config/members.config.js';
@@ -42,7 +42,7 @@ const projectCollaborators = project.collaborators
 <Base
   title={`${project.name} - ${project.subtitle} | Kohaku Lab`}
   description={project.description}
-  image={project.thumbnail || project.image?.src}
+  image={project.image?.src}
 >
   <!-- Navigation -->
   <Navbar slot="nav" client:load />
@@ -55,85 +55,111 @@ const projectCollaborators = project.collaborators
     </a>
   </div>
 
-  <!-- Project Header with Thumbnail -->
-  {
-    project.thumbnail && (
-      <section class="relative h-[400px] overflow-hidden">
-        <img src={project.thumbnail} alt={project.name} class="w-full h-full object-cover" />
-        <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/80 to-transparent" />
-        <div class="absolute inset-0 flex items-end">
-          <div class="container-section pb-12">
-            <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-3">
-              {project.name}
-            </h1>
-            <p class="text-xl sm:text-2xl gradient-text font-semibold">{project.subtitle}</p>
+  <!-- Project Header -->
+  <section class="py-8">
+    <div class="container-section">
+      <div class="mb-6">
+        <h1 class="text-4xl sm:text-5xl font-bold text-white mb-3">{project.name}</h1>
+        <p class="text-xl gradient-text font-semibold">{project.subtitle}</p>
+      </div>
+
+      <!-- Thumbnail (2.4:1 aspect ratio, full container width) -->
+      {
+        project.image && (
+          <div class="relative overflow-hidden rounded-lg aspect-[2.4/1]">
+            <img
+              src={project.image.src}
+              alt={project.image.alt}
+              class="w-full h-full object-cover"
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-900/50 to-transparent" />
           </div>
-        </div>
-      </section>
-    )
-  }
+        )
+      }
+    </div>
+  </section>
 
   <!-- Project Info -->
-  <section class="section">
+  <section class="pb-12">
     <div class="container-section">
       <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
         <!-- Main Content -->
         <div class="lg:col-span-2">
-          {
-            !project.thumbnail && (
-              <div class="mb-8">
-                <h1 class="text-4xl sm:text-5xl font-bold text-white mb-3">{project.name}</h1>
-                <p class="text-xl gradient-text font-semibold">{project.subtitle}</p>
-              </div>
-            )
-          }
-
           <!-- Description -->
           <div class="card mb-8">
             <h2 class="text-2xl font-bold text-slate-100 mb-4">About This Project</h2>
             <p class="text-slate-300 leading-relaxed">{project.description}</p>
           </div>
 
-          <!-- Tags -->
-          <div class="card">
-            <h2 class="text-2xl font-bold text-slate-100 mb-4">Technologies</h2>
-            <div class="flex flex-wrap gap-3">
-              {project.tags.map(tag => <TagBadge tag={tag} />)}
-            </div>
-          </div>
+          <!-- Contributing Members -->
+          {
+            projectMembers.length > 0 && (
+              <div class="card mb-8">
+                <h2 class="text-2xl font-bold text-slate-100 mb-4">Contributing Members</h2>
+                <div class="flex flex-col gap-4">
+                  {projectMembers.map(member => (
+                    <MemberCardCompact client:visible member={member} />
+                  ))}
+                </div>
+              </div>
+            )
+          }
+
+          <!-- Engaged Collaborators -->
+          {
+            projectCollaborators.length > 0 && (
+              <div class="card">
+                <h2 class="text-2xl font-bold text-slate-100 mb-4">Engaged Collaborators</h2>
+                <div class="flex flex-col gap-4">
+                  {projectCollaborators.map(collaborator => (
+                    <CollaboratorCardCompact client:visible collaborator={collaborator} />
+                  ))}
+                </div>
+              </div>
+            )
+          }
         </div>
 
         <!-- Sidebar -->
         <div class="space-y-6">
-          <!-- Quick Info Card -->
+          <!-- Project Pages Card -->
           <div class="card">
-            <h3 class="text-lg font-semibold text-slate-100 mb-4">Quick Info</h3>
-            <div class="space-y-3">
+            <h3 class="text-lg font-semibold text-slate-100 mb-4">Project Pages</h3>
+            <div class="space-y-2">
               <a
                 href={project.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                class="btn-primary w-full justify-center"
+                class="btn-primary w-full justify-center text-sm"
               >
-                <span class="i-carbon-logo-github"></span>
-                <span>View on GitHub</span>
+                <span class="i-carbon-link"></span>
+                <span>Project Page</span>
               </a>
-
               {
-                project.image && (
-                  <div class="flex items-center justify-center p-6 bg-slate-700/30 rounded-lg">
-                    <img
-                      src={project.image.src}
-                      alt={project.image.alt}
-                      class="max-w-full max-h-32 object-contain"
-                    />
-                  </div>
+                project.githubLink && (
+                  <a
+                    href={project.githubLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="btn-secondary w-full justify-center text-sm"
+                  >
+                    <span class="i-carbon-logo-github" />
+                    <span>GitHub</span>
+                  </a>
                 )
               }
             </div>
           </div>
 
-          <!-- Stats Card (if available) -->
+          <!-- Technologies Card -->
+          <div class="card">
+            <h3 class="text-lg font-semibold text-slate-100 mb-4">Technologies</h3>
+            <div class="flex flex-wrap gap-2">
+              {project.tags.map(tag => <TagBadge tag={tag} />)}
+            </div>
+          </div>
+
+          <!-- Stats Card -->
           <div class="card">
             <h3 class="text-lg font-semibold text-slate-100 mb-4">Project Stats</h3>
             <div class="space-y-2 text-sm">
@@ -151,38 +177,6 @@ const projectCollaborators = project.collaborators
       </div>
     </div>
   </section>
-
-  <!-- Contributing Members -->
-  {
-    projectMembers.length > 0 && (
-      <section class="section bg-slate-950/50">
-        <div class="container-section">
-          <h2 class="text-2xl sm:text-3xl font-bold text-slate-100 mb-8">Contributing Members</h2>
-          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {projectMembers.map(member => (
-              <MemberCard client:visible member={member} />
-            ))}
-          </div>
-        </div>
-      </section>
-    )
-  }
-
-  <!-- Engaged Collaborators -->
-  {
-    projectCollaborators.length > 0 && (
-      <section class="section">
-        <div class="container-section">
-          <h2 class="text-2xl sm:text-3xl font-bold text-slate-100 mb-8">Engaged Collaborators</h2>
-          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {projectCollaborators.map(collaborator => (
-              <CollaboratorCard client:visible collaborator={collaborator} />
-            ))}
-          </div>
-        </div>
-      </section>
-    )
-  }
 
   <!-- Related Projects CTA -->
   <section class="section bg-slate-950/50">

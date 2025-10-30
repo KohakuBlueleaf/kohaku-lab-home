@@ -23,10 +23,10 @@ import { tagColors } from './theme.js';
  * @property {string} name - Project name
  * @property {string} subtitle - Short tagline/subtitle
  * @property {string} description - Brief project description
- * @property {string} link - Link to project (GitHub, website, etc.)
+ * @property {string} link - Link to project page (website, docs, etc.)
+ * @property {string} [githubLink] - Optional separate GitHub repository link
  * @property {ProjectTag[]} tags - Category/technology tags
- * @property {ProjectImage} [image] - Optional project image/logo
- * @property {string} [thumbnail] - Thumbnail image for detail page
+ * @property {ProjectImage} [image] - Project thumbnail (2.4:1 ratio, used in card and detail page)
  * @property {string[]} [members] - Contributing member names
  * @property {string[]} [collaborators] - Engaged collaborator names
  * @property {boolean} [featured] - Whether to feature on homepage
@@ -43,7 +43,8 @@ export const projects = [
     subtitle: 'Open Model Hosting Platform',
     description:
       'A HuggingFace alternative with advanced model hosting, versioning, and collaboration features. Built with FastAPI, PostgreSQL, and Vue 3.',
-    link: 'https://github.com/KohakuBlueleaf/KohakuHub',
+    link: 'https://kohakuhub.example.com',
+    githubLink: 'https://github.com/KohakuBlueleaf/KohakuHub',
     tags: [
       { name: 'Python', color: 'yellow' },
       { name: 'Vue 3', color: 'green' },
@@ -52,11 +53,10 @@ export const projects = [
     ],
     image: {
       src: '/assets/projects/kohakuhub.png',
-      alt: 'KohakuHub Logo',
+      alt: 'KohakuHub',
     },
-    thumbnail: '/assets/projects/kohakuhub-banner.jpg',
-    members: ['KohakuBlueLeaf'],
-    collaborators: [],
+    members: ['KohakuBlueLeaf', 'theblackcat'],
+    collaborators: ['DeepGHS'],
     featured: true,
   },
   {
@@ -74,30 +74,28 @@ export const projects = [
     ],
     image: {
       src: '/assets/projects/kohakuboard.png',
-      alt: 'KohakuBoard Logo',
+      alt: 'KohakuBoard',
     },
-    thumbnail: '/assets/projects/kohakuboard-banner.jpg',
-    members: ['KohakuBlueLeaf'],
-    collaborators: [],
+    members: ['KohakuBlueLeaf', 'theblackcat'],
+    collaborators: ['DeepGHS'],
     featured: true,
   },
   {
     slug: 'hdm',
     name: 'HDM',
-    subtitle: 'Home-Trained Text-to-Image Model',
+    subtitle: 'Home-made Diffusion Model',
     description:
       'Home-trained text-to-image diffusion model. Demonstrating that high-quality AI models can be trained with accessible hardware.',
     link: 'https://github.com/KohakuBlueleaf/HDM',
     tags: [
       { name: 'Python', color: 'yellow' },
-      { name: 'Stable Diffusion', color: 'fuchsia' },
+      { name: 'Neural Network', color: 'fuchsia' },
       { name: 'Research', color: 'red' },
     ],
     image: {
-      src: '/assets/projects/hdm.png',
-      alt: 'HDM Project',
+      src: '/assets/projects/hdm.jpg',
+      alt: 'HDM',
     },
-    thumbnail: '/assets/projects/hdm-banner.jpg',
     members: ['KohakuBlueLeaf'],
     collaborators: [],
     featured: true,
@@ -105,21 +103,19 @@ export const projects = [
   {
     slug: 'lycoris',
     name: 'LyCORIS',
-    subtitle: 'Advanced Neural Network Fine-Tuning',
+    subtitle: 'Comprehensive PEFT Library',
     description:
       'Lora beYond Conventional methods. Advanced fine-tuning techniques for neural networks with improved efficiency and quality.',
     link: 'https://github.com/KohakuBlueleaf/LyCORIS',
     tags: [
       { name: 'Python', color: 'yellow' },
       { name: 'Neural Network', color: 'fuchsia' },
-      { name: 'Stable Diffusion', color: 'lime' },
       { name: 'Research', color: 'red' },
     ],
     image: {
-      src: '/assets/projects/lycoris.png',
-      alt: 'LyCORIS Logo',
+      src: 'https://github.com/KohakuBlueleaf/LyCORIS/raw/main/docs/images/banner2.png',
+      alt: 'LyCORIS',
     },
-    thumbnail: '/assets/projects/lycoris-banner.jpg',
     members: ['KohakuBlueLeaf'],
     collaborators: [],
     featured: true,

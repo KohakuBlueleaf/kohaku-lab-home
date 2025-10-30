@@ -29,22 +29,28 @@
 export const members = [
   {
     name: 'KohakuBlueLeaf',
-    role: 'Founder & Lead Developer',
-    avatar: '/assets/members/kohakublueleaf.jpg',
+    role: 'Founder &\nLead Developer',
+    avatar: 'https://kblueleaf.net/_astro/kohaku-badge.qHLEJyD4.webp',
     bio: 'Passionate about AI/ML research and open source development. Creator of LyCORIS and HDM. Believes in democratizing AI technology through accessible tools and education.',
     expertise: [
       'Machine Learning',
-      'Stable Diffusion',
       'Neural Networks',
-      'Python',
       'Full Stack Development',
       'Research',
+      'Python',
+      'Vue3',
+      'Open Source',
     ],
     social: [
       {
         platform: 'github',
         url: 'https://github.com/KohakuBlueleaf',
         icon: 'i-carbon-logo-github',
+      },
+      {
+        platform: 'huggingface',
+        url: 'https://huggingface.co/KBlueLeaf',
+        icon: 'i-carbon-model',
       },
       {
         platform: 'website',
@@ -55,22 +61,34 @@ export const members = [
     core: true,
     location: 'Taiwan',
   },
-  // Add more members here as the team grows
   {
-    name: 'Your Name',
-    role: 'Contributor',
-    avatar: '/assets/members/placeholder.jpg',
-    bio: 'Enthusiastic contributor to Kohaku Lab projects. Passionate about open source and AI/ML.',
-    expertise: ['Web Development', 'UI/UX', 'Vue.js'],
+    name: 'theblackcat',
+    role: 'Developer',
+    avatar:
+      'https://avatars.githubusercontent.com/u/13172147?s=400&u=d7e84c54c7a564027f181a9dc517782c4cad6592&v=4',
+    bio: 'reasoning by meowing',
+    expertise: ['Large Language Models', 'Full Stack Development', 'Research', 'Python'],
     social: [
       {
         platform: 'github',
-        url: 'https://github.com/yourusername',
+        url: 'https://github.com/theblackcat102',
         icon: 'i-carbon-logo-github',
+      },
+      {
+        platform: 'huggingface',
+        url: 'https://huggingface.co/theblackcat102',
+        icon: 'i-carbon-model',
+      },
+      {
+        platform: 'website',
+        url: 'https://zrt.wtf',
+        icon: 'i-carbon-earth',
       },
     ],
     core: false,
+    location: 'Taiwan',
   },
+  // Add more members here as the team grows
 ];
 
 /**

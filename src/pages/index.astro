@@ -14,6 +14,7 @@ import BlogPostCard from '../components/BlogPostCard.vue';
 
 import { projects, getFeaturedProjects } from '../config/projects.config.js';
 import { members, getCoreMembers } from '../config/members.config.js';
+import { heroStats, ctas } from '../config/site.config.js';
 import { sortByDate } from '../utils/helpers.js';
 
 // Get featured projects (first 3)
@@ -35,13 +36,6 @@ const recentPosts = sortedBlogPosts.slice(0, 3).map(post => ({
   slug: post.file.split('/').pop().replace('.md', ''),
   readingTime: post.frontmatter.readingTime,
 }));
-
-// Stats for hero section
-const stats = {
-  githubStars: '7K', // Sum of all members' GitHub stars
-  downloads: '2M', // HuggingFace downloads
-  projects: projects.length,
-};
 ---
 
 <Base>
@@ -49,7 +43,7 @@ const stats = {
   <Navbar slot="nav" client:load />
 
   <!-- Hero Section -->
-  <Hero client:visible stats={stats} />
+  <Hero client:visible stats={heroStats} />
 
   <!-- Featured Projects Section -->
   <section class="section bg-slate-950/50">
@@ -194,24 +188,23 @@ const stats = {
     class="section bg-gradient-to-br from-blue-900/30 to-purple-900/30 border-y border-blue-500/20"
   >
     <div class="container-narrow text-center">
-      <h2 class="text-3xl sm:text-4xl font-bold text-white mb-4">Ready to Get Involved?</h2>
+      <h2 class="text-3xl sm:text-4xl font-bold text-white mb-4">{ctas.joinCommunity.title}</h2>
       <p class="text-lg text-slate-300 mb-8">
-        Join our community of AI/ML enthusiasts and contribute to open-source projects that are
-        making a difference.
+        {ctas.joinCommunity.description}
       </p>
       <div class="flex flex-col sm:flex-row gap-4 justify-center">
         <a
-          href="https://github.com/KohakuBlueleaf"
+          href={ctas.joinCommunity.primaryButton.url}
           target="_blank"
           rel="noopener noreferrer"
           class="btn-primary"
         >
-          <span class="i-carbon-logo-github"></span>
-          <span>Explore on GitHub</span>
+          <span class={ctas.joinCommunity.primaryButton.icon}></span>
+          <span>{ctas.joinCommunity.primaryButton.text}</span>
         </a>
-        <a href="/contact" class="btn-outline">
-          <span class="i-carbon-email"></span>
-          <span>Get in Touch</span>
+        <a href={ctas.joinCommunity.secondaryButton.url} class="btn-outline">
+          <span class={ctas.joinCommunity.secondaryButton.icon}></span>
+          <span>{ctas.joinCommunity.secondaryButton.text}</span>
         </a>
       </div>
     </div>

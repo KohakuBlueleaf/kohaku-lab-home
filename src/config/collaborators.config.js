@@ -19,30 +19,21 @@
  */
 export const collaborators = [
   {
-    name: 'Example University AI Lab',
-    description:
-      'Research collaboration on advanced diffusion models and efficient training techniques.',
-    logoUrl: '/assets/collaborators/example-university.png',
-    websiteUrl: 'https://example.edu',
-    tags: ['Research', 'Academic'],
+    name: 'DeepGHS',
+    description: '',
+    logoUrl:
+      'https://cdn-avatars.huggingface.co/v1/production/uploads/1673678946779-6391f19aba933dc6fd14c618.jpeg',
+    websiteUrl: 'https://huggingface.co/deepghs',
+    tags: ['Research', 'Academic', 'Anime'],
     active: true,
   },
   {
-    name: 'Open Source AI Initiative',
+    name: 'Comfy Org',
     description:
       'Partnership to promote open-source AI development and democratize access to ML tools.',
     logoUrl: '/assets/collaborators/open-ai-initiative.png',
-    websiteUrl: 'https://example.org',
+    websiteUrl: 'https://www.comfy.org',
     tags: ['Open Source', 'Community'],
-    active: true,
-  },
-  {
-    name: 'Tech Company Partner',
-    description:
-      'Industry collaboration for deploying ML models at scale and improving infrastructure.',
-    logoUrl: '/assets/collaborators/tech-partner.png',
-    websiteUrl: 'https://example.com',
-    tags: ['Industry', 'Infrastructure'],
     active: true,
   },
 ];
