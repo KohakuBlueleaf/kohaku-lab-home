@@ -62,6 +62,34 @@ export const members = [
     location: 'Taiwan',
   },
   {
+    name: 'narugo1992',
+    role: 'Core Member',
+    avatar: 'https://cdn.xinhe-info.cn/dev/Jerry.png',
+    bio: 'Software Engineering PhD, founder of DeepGHS. Focused on AI infrastructure for anime, specializing in computer vision R&D, and committed to building open-source tools, models, and datasets for anime ecosystems.',
+    expertise: [
+      'Founder of DeepGHS',
+      'AI/ML/CV for Anime',
+      'Anime AI Infrastructure',
+      'Anime Dataset Development',
+      'MLOps for Anime Applications',
+      'Open Source',
+    ],
+    social: [
+      {
+        platform: 'github',
+        url: 'https: //github.com/narugo1992',
+        icon: 'i-carbon-logo-github',
+      },
+      {
+        platform: 'huggingface',
+        url: 'https: //huggingface.co/narugo1992',
+        icon: 'i-carbon-model',
+      },
+    ],
+    core: true,
+    location: 'Git Repository',
+  },
+  {
     name: 'cybermeow',
     role: 'Researcher',
     avatar:
