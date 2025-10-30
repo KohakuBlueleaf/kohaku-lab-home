@@ -72,7 +72,7 @@ export const contactMethods = [
     icon: 'i-carbon-chat',
     description: 'Join our community discussions',
     color: 'text-green-400',
-    available: false,
+    available: true,
   },
   {
     type: 'twitter',
