@@ -16,11 +16,15 @@
           class="w-16 h-16 bg-slate-700/30 rounded-lg overflow-hidden flex items-center justify-center"
         >
           <img
+            v-show="!logoError"
             :src="collaborator.logoUrl"
             :alt="`${collaborator.name} logo`"
             class="max-w-full max-h-full object-contain p-2"
             loading="lazy"
+            @error="handleLogoError"
+            onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"
           />
+          <span class="i-carbon-partnership text-slate-500 text-2xl" style="display: none"></span>
         </div>
       </div>
 
@@ -116,6 +120,12 @@
 
 <script setup>
 import { ref, defineProps } from 'vue';
+
+const logoError = ref(false);
+
+function handleLogoError() {
+  logoError.value = true;
+}
 
 /**
  * @typedef {Object} Collaborator

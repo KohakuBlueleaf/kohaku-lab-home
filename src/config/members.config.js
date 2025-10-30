@@ -78,9 +78,9 @@ export const members = [
         icon: 'i-carbon-logo-github',
       },
       {
-        platform: 'twitter (X)',
-        url: 'https://x.com/alea31415',
-        icon: 'i-carbon-logo-twitter',
+        platform: 'website',
+        url: 'https://www.cyber-meow.com/',
+        icon: 'i-carbon-earth',
       },
     ],
     core: false,

@@ -159,7 +159,7 @@ const recentPosts = sortedBlogPosts.slice(0, 3).map(post => ({
 
       <!-- Core Members -->
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
-        {coreMembers.map(member => <MemberCard client:visible member={member} />)}
+        {coreMembers.map(member => <MemberCard client:load member={member} />)}
       </div>
 
       <!-- Members Divider -->
@@ -175,7 +175,7 @@ const recentPosts = sortedBlogPosts.slice(0, 3).map(post => ({
             {/* Non-Core Members */}
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
               {contributors.map(member => (
-                <MemberCard client:visible member={member} />
+                <MemberCard client:load member={member} />
               ))}
             </div>
           </>

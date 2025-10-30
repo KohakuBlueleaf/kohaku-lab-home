@@ -11,13 +11,28 @@
       class="relative overflow-hidden rounded-md mb-4 aspect-[2.4/1] bg-slate-700"
     >
       <img
+        v-show="!imageError"
         :src="project.image.src"
         :alt="project.image.alt"
         class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
         loading="lazy"
+        @error="handleImageError"
+        onerror="this.style.display='none'; this.parentElement.querySelector('.fallback-img').style.display='flex';"
       />
+      <!-- Fallback -->
+      <div
+        class="fallback-img absolute inset-0 items-center justify-center bg-slate-800"
+        style="display: none"
+      >
+        <div class="text-center text-slate-500">
+          <span class="i-carbon-image text-4xl mb-2 block"></span>
+          <span class="text-sm">{{ project.name }}</span>
+        </div>
+      </div>
+      <!-- Gradient overlay -->
       <div
         class="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"
+        style="pointer-events: none"
       ></div>
     </div>
 
@@ -50,8 +65,14 @@
 </template>
 
 <script setup>
-import { defineProps } from 'vue';
+import { ref, defineProps } from 'vue';
 import TagBadge from './TagBadge.vue';
+
+const imageError = ref(false);
+
+function handleImageError() {
+  imageError.value = true;
+}
 
 /**
  * @typedef {Object} ProjectTag

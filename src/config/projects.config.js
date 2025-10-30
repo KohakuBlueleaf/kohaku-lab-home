@@ -52,7 +52,7 @@ export const projects = [
       { name: 'Fullstack', color: 'blue' },
     ],
     image: {
-      src: '/assets/projects/kohakuhub.png',
+      src: '/assets/projects/kohak123uhub.png',
       alt: 'KohakuHub',
     },
     members: ['KohakuBlueLeaf', 'theblackcat', 'ntrwansui'],

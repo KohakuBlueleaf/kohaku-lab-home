@@ -6,12 +6,29 @@
       class="relative overflow-hidden rounded-md mb-4 aspect-video bg-slate-700"
     >
       <img
+        v-show="!thumbnailError"
         :src="post.thumbnail"
         :alt="`${post.title} thumbnail`"
         class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
         loading="lazy"
+        @error="handleThumbnailError"
+        onerror="this.style.display='none'; this.parentElement.querySelector('.fallback-img').style.display='flex';"
       />
-      <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent"></div>
+      <!-- Fallback -->
+      <div
+        class="fallback-img absolute inset-0 items-center justify-center bg-slate-800"
+        style="display: none"
+      >
+        <div class="text-center text-slate-500">
+          <span class="i-carbon-document text-4xl mb-2 block"></span>
+          <span class="text-sm">Blog Post</span>
+        </div>
+      </div>
+      <!-- Gradient overlay -->
+      <div
+        class="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent"
+        style="pointer-events: none"
+      ></div>
     </div>
 
     <!-- Content -->
@@ -66,8 +83,14 @@
 </template>
 
 <script setup>
-import { computed, defineProps } from 'vue';
+import { ref, computed, defineProps } from 'vue';
 import { formatDate } from '../utils/helpers.js';
+
+const thumbnailError = ref(false);
+
+function handleThumbnailError() {
+  thumbnailError.value = true;
+}
 
 /**
  * @typedef {Object} BlogPost

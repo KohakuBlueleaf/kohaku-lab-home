@@ -11,13 +11,21 @@
       @keydown.space.prevent="toggleExpanded"
     >
       <!-- Avatar -->
-      <div class="flex-shrink-0">
+      <div class="flex-shrink-0 relative">
         <img
           :src="member.avatar"
           :alt="`${member.name} avatar`"
           class="w-16 h-16 rounded-full object-cover border-2 border-slate-600"
           loading="lazy"
+          @error="handleAvatarError"
+          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
         />
+        <div
+          class="w-16 h-16 rounded-full bg-slate-700 border-2 border-slate-600 flex items-center justify-center text-slate-400"
+          style="display: none"
+        >
+          <span class="i-carbon-user text-2xl"></span>
+        </div>
       </div>
 
       <!-- Basic Info -->
@@ -101,6 +109,12 @@
 
 <script setup>
 import { ref, defineProps } from 'vue';
+
+const avatarError = ref(false);
+
+function handleAvatarError() {
+  avatarError.value = true;
+}
 
 /**
  * @typedef {Object} SocialLink

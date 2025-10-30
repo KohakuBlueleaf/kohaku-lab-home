@@ -49,7 +49,7 @@ const contributors = getContributors();
 
           <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {coreMembers.map(member => (
-              <MemberCard client:visible member={member} />
+              <MemberCard client:load member={member} />
             ))}
           </div>
         </div>
@@ -69,7 +69,7 @@ const contributors = getContributors();
 
           <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {contributors.map(member => (
-              <MemberCard client:visible member={member} />
+              <MemberCard client:load member={member} />
             ))}
           </div>
         </div>

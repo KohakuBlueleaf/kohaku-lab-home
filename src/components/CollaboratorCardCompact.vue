@@ -14,11 +14,15 @@
         class="w-10 h-10 bg-slate-700/30 rounded-lg overflow-hidden flex items-center justify-center border-2 border-slate-600 hover:border-blue-500 transition-colors"
       >
         <img
+          v-show="!logoError"
           :src="collaborator.logoUrl"
           :alt="`${collaborator.name} logo`"
           class="max-w-full max-h-full object-contain p-1"
           loading="lazy"
+          @error="handleLogoError"
+          onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"
         />
+        <span class="i-carbon-partnership text-slate-500 text-lg" style="display: none"></span>
       </div>
     </div>
 
@@ -96,9 +100,14 @@ const props = defineProps({
 });
 
 const isExpanded = ref(false);
+const logoError = ref(false);
 
 function toggleExpanded() {
   isExpanded.value = !isExpanded.value;
+}
+
+function handleLogoError() {
+  logoError.value = true;
 }
 </script>
 

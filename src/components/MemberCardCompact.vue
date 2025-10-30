@@ -2,7 +2,7 @@
   <div class="flex items-start gap-3">
     <!-- Avatar (smaller) -->
     <div
-      class="flex-shrink-0 cursor-pointer"
+      class="flex-shrink-0 cursor-pointer relative"
       @click="toggleExpanded"
       role="button"
       :aria-expanded="isExpanded"
@@ -15,7 +15,15 @@
         :alt="`${member.name} avatar`"
         class="w-10 h-10 rounded-full object-cover border-2 border-slate-600 hover:border-blue-500 transition-colors"
         loading="lazy"
+        @error="handleAvatarError"
+        onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
       />
+      <div
+        class="w-10 h-10 rounded-full bg-slate-700 border-2 border-slate-600 hover:border-blue-500 transition-colors flex items-center justify-center text-slate-400"
+        style="display: none"
+      >
+        <span class="i-carbon-user text-base"></span>
+      </div>
     </div>
 
     <!-- Info -->
@@ -83,9 +91,14 @@ const props = defineProps({
 });
 
 const isExpanded = ref(false);
+const avatarError = ref(false);
 
 function toggleExpanded() {
   isExpanded.value = !isExpanded.value;
+}
+
+function handleAvatarError() {
+  avatarError.value = true;
 }
 </script>
 
