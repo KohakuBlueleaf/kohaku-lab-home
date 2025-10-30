@@ -1,0 +1,96 @@
+---
+/**
+ * Collaborators Page
+ * Display all Kohaku Lab collaborators and partners
+ */
+
+import Base from '../../layouts/Base.astro';
+import Navbar from '../../components/Navbar.vue';
+import Footer from '../../components/Footer.vue';
+import CollaboratorCard from '../../components/CollaboratorCard.vue';
+
+import { collaborators, getActiveCollaborators } from '../../config/collaborators.config.js';
+
+const activeCollaborators = getActiveCollaborators();
+---
+
+<Base
+  title="Collaborators | Kohaku Lab"
+  description="Our partners and collaborators in the AI/ML community. Building the future of AI together."
+>
+  <!-- Navigation -->
+  <Navbar slot="nav" client:load />
+
+  <!-- Page Header -->
+  <section
+    class="py-12 bg-gradient-to-br from-blue-900/30 to-purple-900/30 border-b border-blue-500/20"
+  >
+    <div class="container-section text-center">
+      <h1 class="text-4xl sm:text-5xl font-bold mb-4">
+        <span class="gradient-text">Our Collaborators</span>
+      </h1>
+      <p class="text-lg text-slate-300 max-w-2xl mx-auto">
+        We work with amazing organizations and individuals who share our vision of making AI
+        technology accessible to everyone.
+      </p>
+    </div>
+  </section>
+
+  <!-- Collaborators Grid -->
+  <section class="section">
+    <div class="container-section">
+      {
+        activeCollaborators.length > 0 ? (
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {activeCollaborators.map(collaborator => (
+              <CollaboratorCard client:visible collaborator={collaborator} />
+            ))}
+          </div>
+        ) : (
+          <div class="text-center py-12">
+            <div class="text-6xl mb-4">
+              <span class="i-carbon-partnership text-slate-600" />
+            </div>
+            <h3 class="text-2xl font-semibold text-slate-300 mb-2">Looking for Collaborators</h3>
+            <p class="text-slate-400 max-w-md mx-auto">
+              We're actively seeking partnerships with organizations and individuals who share our
+              mission. Get in touch if you'd like to collaborate!
+            </p>
+            <div class="mt-6">
+              <a href="/contact" class="btn-primary">
+                <span class="i-carbon-email" />
+                <span>Contact Us</span>
+              </a>
+            </div>
+          </div>
+        )
+      }
+    </div>
+  </section>
+
+  <!-- Collaboration CTA -->
+  <section class="section bg-slate-950/50">
+    <div class="container-narrow text-center">
+      <h2 class="text-2xl sm:text-3xl font-bold text-white mb-4">Interested in Collaborating?</h2>
+      <p class="text-slate-300 mb-6">
+        We're open to partnerships, research collaborations, and joint projects. Whether you're from
+        academia, industry, or the open-source community, we'd love to hear from you.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="/contact" class="btn-primary">
+          <span class="i-carbon-email"></span>
+          <span>Get in Touch</span>
+        </a>
+        <a href="/about" class="btn-secondary">
+          <span>Learn More About Us</span>
+          <span class="i-carbon-arrow-right"></span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <slot name="footer">
+    <Footer client:load />
+  </slot>
+</Base>

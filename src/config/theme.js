@@ -31,8 +31,8 @@ export const primary = {
   600: '#2563eb',
   700: '#1d4ed8',
   800: '#1e40af',
-  900: '#1e3a8a'
-}
+  900: '#1e3a8a',
+};
 
 /**
  * Tag color mappings for categories
@@ -42,54 +42,54 @@ export const tagColors = {
   yellow: {
     bg: '#fef08a',
     text: '#854d0e',
-    name: 'yellow'
+    name: 'yellow',
   },
   fuchsia: {
     bg: '#f0abfc',
     text: '#701a75',
-    name: 'fuchsia'
+    name: 'fuchsia',
   },
   lime: {
     bg: '#bef264',
     text: '#365314',
-    name: 'lime'
+    name: 'lime',
   },
   red: {
     bg: '#fca5a5',
     text: '#7f1d1d',
-    name: 'red'
+    name: 'red',
   },
   green: {
     bg: '#86efac',
     text: '#14532d',
-    name: 'green'
+    name: 'green',
   },
   blue: {
     bg: '#93c5fd',
     text: '#1e3a8a',
-    name: 'blue'
+    name: 'blue',
   },
   purple: {
     bg: '#d8b4fe',
     text: '#581c87',
-    name: 'purple'
+    name: 'purple',
   },
   orange: {
     bg: '#fdba74',
     text: '#7c2d12',
-    name: 'orange'
+    name: 'orange',
   },
   cyan: {
     bg: '#67e8f9',
     text: '#164e63',
-    name: 'cyan'
+    name: 'cyan',
   },
   pink: {
     bg: '#fbcfe8',
     text: '#831843',
-    name: 'pink'
-  }
-}
+    name: 'pink',
+  },
+};
 
 /**
  * Gradient configurations for various UI elements
@@ -100,40 +100,40 @@ export const gradients = {
   heroAlt: 'from-sky-400 to-cyan-400',
   accent: 'from-blue-600 to-purple-600',
   card: 'from-slate-800 to-slate-900',
-  text: 'from-sky-500 to-pink-300'
-}
+  text: 'from-sky-500 to-pink-300',
+};
 
 /**
  * Background colors for different sections
  * @type {Object.<string, string>}
  */
 export const backgrounds = {
-  base: '#0f172a',      // slate-900
-  card: '#1e293b',      // slate-800
+  base: '#0f172a', // slate-900
+  card: '#1e293b', // slate-800
   cardHover: '#334155', // slate-700
-  section: '#020617'    // slate-950
-}
+  section: '#020617', // slate-950
+};
 
 /**
  * Text colors
  * @type {Object.<string, string>}
  */
 export const text = {
-  primary: '#f1f5f9',   // slate-100
+  primary: '#f1f5f9', // slate-100
   secondary: '#cbd5e1', // slate-300
-  muted: '#94a3b8',     // slate-400
-  dark: '#64748b'       // slate-500
-}
+  muted: '#94a3b8', // slate-400
+  dark: '#64748b', // slate-500
+};
 
 /**
  * Border colors
  * @type {Object.<string, string>}
  */
 export const borders = {
-  default: '#334155',  // slate-700
-  light: '#475569',    // slate-600
-  dark: '#1e293b'      // slate-800
-}
+  default: '#334155', // slate-700
+  light: '#475569', // slate-600
+  dark: '#1e293b', // slate-800
+};
 
 /**
  * Shadow configurations
@@ -143,36 +143,36 @@ export const shadows = {
   sm: '0 1px 2px 0 rgb(0 0 0 / 0.05)',
   md: '0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)',
   lg: '0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)',
-  xl: '0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1)'
-}
+  xl: '0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1)',
+};
 
 /**
  * Spacing scale (in pixels)
  * @type {Object.<string, string>}
  */
 export const spacing = {
-  xs: '0.5rem',    // 8px
-  sm: '0.75rem',   // 12px
-  md: '1rem',      // 16px
-  lg: '1.5rem',    // 24px
-  xl: '2rem',      // 32px
-  '2xl': '3rem',   // 48px
-  '3xl': '4rem',   // 64px
-  '4xl': '6rem'    // 96px
-}
+  xs: '0.5rem', // 8px
+  sm: '0.75rem', // 12px
+  md: '1rem', // 16px
+  lg: '1.5rem', // 24px
+  xl: '2rem', // 32px
+  '2xl': '3rem', // 48px
+  '3xl': '4rem', // 64px
+  '4xl': '6rem', // 96px
+};
 
 /**
  * Border radius scale
  * @type {Object.<string, string>}
  */
 export const borderRadius = {
-  sm: '0.125rem',  // 2px
-  md: '0.375rem',  // 6px
-  lg: '0.5rem',    // 8px
-  xl: '0.75rem',   // 12px
-  '2xl': '1rem',   // 16px
-  full: '9999px'
-}
+  sm: '0.125rem', // 2px
+  md: '0.375rem', // 6px
+  lg: '0.5rem', // 8px
+  xl: '0.75rem', // 12px
+  '2xl': '1rem', // 16px
+  full: '9999px',
+};
 
 /**
  * Transition durations
@@ -181,8 +181,8 @@ export const borderRadius = {
 export const transitions = {
   fast: '150ms',
   normal: '300ms',
-  slow: '500ms'
-}
+  slow: '500ms',
+};
 
 /**
  * Container max widths for different breakpoints
@@ -193,8 +193,8 @@ export const containers = {
   md: '768px',
   lg: '1024px',
   xl: '1280px',
-  '2xl': '1536px'
-}
+  '2xl': '1536px',
+};
 
 /**
  * Export all theme values
@@ -210,5 +210,5 @@ export default {
   spacing,
   borderRadius,
   transitions,
-  containers
-}
+  containers,
+};

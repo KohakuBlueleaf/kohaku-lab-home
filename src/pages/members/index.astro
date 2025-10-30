@@ -1,0 +1,112 @@
+---
+/**
+ * Members Page
+ * Display all Kohaku Lab team members
+ */
+
+import Base from '../../layouts/Base.astro';
+import Navbar from '../../components/Navbar.vue';
+import Footer from '../../components/Footer.vue';
+import MemberCard from '../../components/MemberCard.vue';
+
+import { members, getCoreMembers, getContributors } from '../../config/members.config.js';
+
+const coreMembers = getCoreMembers();
+const contributors = getContributors();
+---
+
+<Base
+  title="Our Team | Kohaku Lab"
+  description="Meet the talented individuals behind Kohaku Lab. A diverse team of AI/ML enthusiasts collaborating from around the world."
+>
+  <!-- Navigation -->
+  <Navbar slot="nav" client:load />
+
+  <!-- Page Header -->
+  <section
+    class="py-12 bg-gradient-to-br from-blue-900/30 to-purple-900/30 border-b border-blue-500/20"
+  >
+    <div class="container-section text-center">
+      <h1 class="text-4xl sm:text-5xl font-bold mb-4">
+        <span class="gradient-text">Our Team</span>
+      </h1>
+      <p class="text-lg text-slate-300 max-w-2xl mx-auto">
+        Meet the passionate individuals who make Kohaku Lab possible. We're a virtual team united by
+        our love for AI/ML and open source.
+      </p>
+    </div>
+  </section>
+
+  <!-- Core Team Section -->
+  {
+    coreMembers.length > 0 && (
+      <section class="section">
+        <div class="container-section">
+          <div class="mb-8">
+            <h2 class="text-2xl sm:text-3xl font-bold text-slate-100 mb-2">Core Team</h2>
+            <p class="text-slate-400">The founding members and maintainers of Kohaku Lab</p>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {coreMembers.map(member => (
+              <MemberCard client:visible member={member} />
+            ))}
+          </div>
+        </div>
+      </section>
+    )
+  }
+
+  <!-- Contributors Section -->
+  {
+    contributors.length > 0 && (
+      <section class="section bg-slate-950/50">
+        <div class="container-section">
+          <div class="mb-8">
+            <h2 class="text-2xl sm:text-3xl font-bold text-slate-100 mb-2">Contributors</h2>
+            <p class="text-slate-400">Amazing people who contribute to our projects</p>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {contributors.map(member => (
+              <MemberCard client:visible member={member} />
+            ))}
+          </div>
+        </div>
+      </section>
+    )
+  }
+
+  <!-- Join Us CTA -->
+  <section class="section">
+    <div class="container-narrow text-center">
+      <div class="card bg-gradient-to-br from-blue-900/30 to-purple-900/30 border-blue-500/20">
+        <h2 class="text-2xl sm:text-3xl font-bold text-white mb-4">Want to Join Us?</h2>
+        <p class="text-slate-300 mb-6">
+          We're always looking for passionate individuals to join our virtual lab. Whether you're
+          interested in research, development, or community building, there's a place for you here.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="/contact" class="btn-primary">
+            <span class="i-carbon-email"></span>
+            <span>Get in Touch</span>
+          </a>
+          <a
+            href="https://github.com/KohakuBlueleaf"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn-secondary"
+          >
+            <span class="i-carbon-logo-github"></span>
+            <span>View Our Work</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <slot name="footer">
+    <Footer client:load />
+  </slot>
+</Base>

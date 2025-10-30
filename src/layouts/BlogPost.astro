@@ -1,0 +1,237 @@
+---
+/**
+ * Blog Post Layout
+ * Layout for individual blog posts with markdown content
+ */
+
+import Base from './Base.astro';
+import { formatDate, estimateReadingTime } from '../utils/helpers.js';
+
+export interface Props {
+  frontmatter: {
+    title: string;
+    description: string;
+    pubDate: string;
+    thumbnail?: string;
+    tags?: string[];
+    author?: string;
+  };
+}
+
+const { frontmatter } = Astro.props;
+const {
+  title,
+  description,
+  pubDate,
+  thumbnail = '/og-image.jpg',
+  tags = [],
+  author = 'Kohaku Lab',
+} = frontmatter;
+
+// Get the raw markdown content for reading time estimation
+const rawContent = await Astro.slots.render('default');
+const readingTime = estimateReadingTime(rawContent.replace(/<[^>]*>/g, ''));
+---
+
+<Base title={`${title} | Kohaku Lab Blog`} description={description} image={thumbnail}>
+  <!-- Navigation Slot -->
+  <slot name="nav" slot="nav" />
+
+  <!-- Blog Post Content -->
+  <article class="container-narrow py-8">
+    <!-- Back Button -->
+    <div class="mb-6">
+      <a href="/blog" class="link inline-flex items-center gap-2">
+        <span class="i-carbon-arrow-left text-xl"></span>
+        Back to Blog
+      </a>
+    </div>
+
+    <!-- Post Header -->
+    <header class="mb-8">
+      <h1 class="text-4xl sm:text-5xl font-bold text-slate-100 mb-4 leading-tight">
+        {title}
+      </h1>
+
+      <!-- Post Meta -->
+      <div class="flex flex-wrap items-center gap-4 text-slate-400 text-sm">
+        <div class="flex items-center gap-2">
+          <span class="i-carbon-calendar text-lg"></span>
+          <time datetime={pubDate}>{formatDate(pubDate)}</time>
+        </div>
+        <div class="flex items-center gap-2">
+          <span class="i-carbon-time text-lg"></span>
+          <span>{readingTime} min read</span>
+        </div>
+        {
+          author && (
+            <div class="flex items-center gap-2">
+              <span class="i-carbon-user text-lg" />
+              <span>{author}</span>
+            </div>
+          )
+        }
+      </div>
+
+      <!-- Tags -->
+      {
+        tags.length > 0 && (
+          <div class="flex flex-wrap gap-2 mt-4">
+            {tags.map(tag => (
+              <a
+                href={`/blog?tag=${encodeURIComponent(tag)}`}
+                class="tag bg-slate-700 text-slate-200 hover:bg-slate-600 transition-colors"
+              >
+                #{tag}
+              </a>
+            ))}
+          </div>
+        )
+      }
+    </header>
+
+    <!-- Thumbnail Image -->
+    {
+      thumbnail && thumbnail !== '/og-image.jpg' && (
+        <div class="mb-8 rounded-lg overflow-hidden">
+          <img src={thumbnail} alt={title} class="w-full h-auto object-cover" loading="eager" />
+        </div>
+      )
+    }
+
+    <!-- Post Content with Prose Styling -->
+    <div class="prose prose-invert prose-slate max-w-none">
+      <slot />
+    </div>
+
+    <!-- Post Footer -->
+    <footer class="mt-12 pt-8 border-t border-slate-700">
+      <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+        <div>
+          <p class="text-slate-400 text-sm mb-2">Share this post</p>
+          <div class="flex gap-3">
+            <a
+              href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(title)}&url=${encodeURIComponent(Astro.url.href)}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-slate-400 hover:text-blue-400 transition-colors"
+              aria-label="Share on Twitter"
+            >
+              <span class="i-carbon-logo-twitter text-2xl"></span>
+            </a>
+            <a
+              href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(Astro.url.href)}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-slate-400 hover:text-blue-400 transition-colors"
+              aria-label="Share on Facebook"
+            >
+              <span class="i-carbon-logo-facebook text-2xl"></span>
+            </a>
+            <a
+              href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(Astro.url.href)}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-slate-400 hover:text-blue-400 transition-colors"
+              aria-label="Share on LinkedIn"
+            >
+              <span class="i-carbon-logo-linkedin text-2xl"></span>
+            </a>
+          </div>
+        </div>
+        <a href="/blog" class="btn-secondary"> View All Posts </a>
+      </div>
+    </footer>
+  </article>
+
+  <!-- Footer Slot -->
+  <slot name="footer" slot="footer" />
+</Base>
+
+<style is:global>
+  /* Prose styling for markdown content */
+  .prose {
+    @apply text-slate-300;
+  }
+
+  .prose h2 {
+    @apply text-3xl font-bold text-slate-100 mt-12 mb-4;
+  }
+
+  .prose h3 {
+    @apply text-2xl font-semibold text-slate-100 mt-8 mb-3;
+  }
+
+  .prose h4 {
+    @apply text-xl font-semibold text-slate-100 mt-6 mb-2;
+  }
+
+  .prose p {
+    @apply mb-4 leading-relaxed;
+  }
+
+  .prose a {
+    @apply text-blue-400 hover:text-blue-300 underline underline-offset-2 transition-colors;
+  }
+
+  .prose ul,
+  .prose ol {
+    @apply mb-4 pl-6;
+  }
+
+  .prose li {
+    @apply mb-2;
+  }
+
+  .prose ul li {
+    @apply list-disc;
+  }
+
+  .prose ol li {
+    @apply list-decimal;
+  }
+
+  .prose code {
+    @apply bg-slate-800 text-pink-400 px-1.5 py-0.5 rounded text-sm;
+  }
+
+  .prose pre {
+    @apply bg-slate-800 border border-slate-700 rounded-lg p-4 mb-4 overflow-x-auto;
+  }
+
+  .prose pre code {
+    @apply bg-transparent text-slate-300 p-0;
+  }
+
+  .prose blockquote {
+    @apply border-l-4 border-blue-500 pl-4 italic text-slate-400 my-4;
+  }
+
+  .prose img {
+    @apply rounded-lg my-6;
+  }
+
+  .prose table {
+    @apply w-full border-collapse mb-4;
+  }
+
+  .prose th {
+    @apply bg-slate-800 text-slate-100 font-semibold p-3 text-left border border-slate-700;
+  }
+
+  .prose td {
+    @apply p-3 border border-slate-700;
+  }
+
+  .prose hr {
+    @apply border-slate-700 my-8;
+  }
+
+  .prose strong {
+    @apply text-slate-100 font-semibold;
+  }
+
+  .prose em {
+    @apply italic;
+  }
+</style>

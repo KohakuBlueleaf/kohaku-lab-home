@@ -1,0 +1,149 @@
+---
+/**
+ * Projects Page
+ * Display all Kohaku Lab projects with filtering
+ */
+
+import Base from '../../layouts/Base.astro';
+import Navbar from '../../components/Navbar.vue';
+import Footer from '../../components/Footer.vue';
+import ProjectCard from '../../components/ProjectCard.vue';
+
+import { projects, getAllTags } from '../../config/projects.config.js';
+
+// Get all unique tags for filter
+const allTags = getAllTags();
+---
+
+<Base
+  title="Projects | Kohaku Lab"
+  description="Explore open-source AI/ML projects by Kohaku Lab. From neural network training techniques to full-stack ML platforms."
+>
+  <!-- Navigation -->
+  <Navbar slot="nav" client:load />
+
+  <!-- Page Header -->
+  <section
+    class="py-12 bg-gradient-to-br from-blue-900/30 to-purple-900/30 border-b border-blue-500/20"
+  >
+    <div class="container-section text-center">
+      <h1 class="text-4xl sm:text-5xl font-bold mb-4">
+        <span class="gradient-text">Our Projects</span>
+      </h1>
+      <p class="text-lg text-slate-300 max-w-2xl mx-auto">
+        Explore our open-source contributions to the AI/ML community. All projects are freely
+        available and built with passion.
+      </p>
+    </div>
+  </section>
+
+  <!-- Projects Section with Client-Side Filtering -->
+  <section class="section">
+    <div class="container-section">
+      <!-- Filter Component (Vue) -->
+      <div id="projects-filter-app" class="mb-8">
+        <!-- This will be hydrated by Vue -->
+      </div>
+
+      <!-- Projects Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {projects.map(project => <ProjectCard client:visible project={project} />)}
+      </div>
+
+      <!-- Empty State (hidden by default, shown by Vue when no results) -->
+      <div id="empty-state" class="hidden text-center py-12">
+        <div class="text-6xl mb-4">
+          <span class="i-carbon-search-locate text-slate-600"></span>
+        </div>
+        <h3 class="text-2xl font-semibold text-slate-300 mb-2">No projects found</h3>
+        <p class="text-slate-400">Try adjusting your filters to find what you're looking for.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Client-Side Filtering Script -->
+  <script define:vars={{ projects, allTags }}>
+    // Simple client-side filtering
+    let currentFilter = 'all';
+
+    // Create filter buttons
+    const filterContainer = document.getElementById('projects-filter-app');
+    if (filterContainer) {
+      const filterHTML = `
+        <div class="flex flex-wrap gap-3 justify-center">
+          <button
+            class="tag bg-blue-600 text-white cursor-pointer hover:bg-blue-700 transition-colors filter-btn active"
+            data-filter="all"
+          >
+            All Projects
+          </button>
+          ${allTags
+            .map(
+              tag => `
+            <button
+              class="tag bg-slate-700 text-slate-200 cursor-pointer hover:bg-slate-600 transition-colors filter-btn"
+              data-filter="${tag.toLowerCase()}"
+            >
+              ${tag}
+            </button>
+          `
+            )
+            .join('')}
+        </div>
+      `;
+      filterContainer.innerHTML = filterHTML;
+
+      // Add click handlers
+      const filterBtns = filterContainer.querySelectorAll('.filter-btn');
+      filterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          currentFilter = btn.dataset.filter;
+
+          // Update active state
+          filterBtns.forEach(b => b.classList.remove('active', 'bg-blue-600', 'text-white'));
+          filterBtns.forEach(b => b.classList.add('bg-slate-700', 'text-slate-200'));
+          btn.classList.add('active', 'bg-blue-600', 'text-white');
+          btn.classList.remove('bg-slate-700', 'text-slate-200');
+
+          // Filter projects
+          filterProjects(currentFilter);
+        });
+      });
+    }
+
+    function filterProjects(filter) {
+      const projectCards = document.querySelectorAll('[data-project-card]');
+      const emptyState = document.getElementById('empty-state');
+      let visibleCount = 0;
+
+      projectCards.forEach(card => {
+        const projectData = JSON.parse(card.dataset.projectTags || '[]');
+
+        if (filter === 'all' || projectData.some(tag => tag.toLowerCase() === filter)) {
+          card.style.display = 'block';
+          visibleCount++;
+        } else {
+          card.style.display = 'none';
+        }
+      });
+
+      // Show/hide empty state
+      if (emptyState) {
+        if (visibleCount === 0) {
+          emptyState.classList.remove('hidden');
+        } else {
+          emptyState.classList.add('hidden');
+        }
+      }
+    }
+  </script>
+
+  <!-- Footer -->
+  <Footer slot="footer" client:load />
+</Base>
+
+<style>
+  .filter-btn.active {
+    transform: scale(1.05);
+  }
+</style>

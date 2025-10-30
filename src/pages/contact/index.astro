@@ -1,0 +1,213 @@
+---
+/**
+ * Contact Page
+ * Contact information and ways to reach Kohaku Lab
+ */
+
+import Base from '../../layouts/Base.astro';
+import Navbar from '../../components/Navbar.vue';
+import Footer from '../../components/Footer.vue';
+---
+
+<Base
+  title="Contact Us | Kohaku Lab"
+  description="Get in touch with Kohaku Lab. We're here to answer questions, discuss collaborations, and connect with the AI/ML community."
+>
+  <!-- Navigation -->
+  <Navbar slot="nav" client:load />
+
+  <!-- Page Header -->
+  <section
+    class="py-12 bg-gradient-to-br from-blue-900/30 to-purple-900/30 border-b border-blue-500/20"
+  >
+    <div class="container-section text-center">
+      <h1 class="text-4xl sm:text-5xl font-bold mb-4">
+        <span class="gradient-text">Get in Touch</span>
+      </h1>
+      <p class="text-lg text-slate-300 max-w-2xl mx-auto">
+        Have questions, ideas, or want to collaborate? We'd love to hear from you.
+      </p>
+    </div>
+  </section>
+
+  <!-- Contact Methods -->
+  <section class="section">
+    <div class="container-narrow">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+        <!-- Email -->
+        <a href="mailto:contact@kohaku-lab.example" class="card-interactive">
+          <div class="text-4xl mb-4">
+            <span class="i-carbon-email text-blue-400"></span>
+          </div>
+          <h3 class="text-xl font-semibold text-white mb-2">Email Us</h3>
+          <p class="text-slate-400 text-sm mb-3">
+            For general inquiries, collaboration proposals, or questions
+          </p>
+          <p class="text-blue-400 font-medium">contact@kohaku-lab.example</p>
+        </a>
+
+        <!-- GitHub -->
+        <a
+          href="https://github.com/KohakuBlueleaf"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="card-interactive"
+        >
+          <div class="text-4xl mb-4">
+            <span class="i-carbon-logo-github text-purple-400"></span>
+          </div>
+          <h3 class="text-xl font-semibold text-white mb-2">GitHub</h3>
+          <p class="text-slate-400 text-sm mb-3">
+            Check out our projects, report issues, or contribute code
+          </p>
+          <p class="text-blue-400 font-medium">@KohakuBlueleaf</p>
+        </a>
+
+        <!-- Discord/Community -->
+        <div class="card">
+          <div class="text-4xl mb-4">
+            <span class="i-carbon-chat text-green-400"></span>
+          </div>
+          <h3 class="text-xl font-semibold text-white mb-2">Community Chat</h3>
+          <p class="text-slate-400 text-sm mb-3">Join our community discussions (Coming soon)</p>
+          <p class="text-slate-500 font-medium">Discord/Slack link will be available soon</p>
+        </div>
+
+        <!-- Twitter/Social -->
+        <a
+          href="https://twitter.com/KohakuBlueleaf"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="card-interactive"
+        >
+          <div class="text-4xl mb-4">
+            <span class="i-carbon-logo-twitter text-cyan-400"></span>
+          </div>
+          <h3 class="text-xl font-semibold text-white mb-2">Social Media</h3>
+          <p class="text-slate-400 text-sm mb-3">
+            Follow us for updates, announcements, and insights
+          </p>
+          <p class="text-blue-400 font-medium">@KohakuBlueleaf</p>
+        </a>
+      </div>
+
+      <!-- Additional Info -->
+      <div class="card bg-slate-800/50">
+        <h3 class="text-xl font-semibold text-white mb-4">What You Can Reach Out About</h3>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div class="flex items-start gap-3">
+            <span class="i-carbon-checkmark-filled text-green-400 text-xl flex-shrink-0 mt-1"
+            ></span>
+            <div>
+              <p class="text-slate-300 font-medium">Project Collaboration</p>
+              <p class="text-slate-400 text-sm">Partner with us on research or development</p>
+            </div>
+          </div>
+
+          <div class="flex items-start gap-3">
+            <span class="i-carbon-checkmark-filled text-green-400 text-xl flex-shrink-0 mt-1"
+            ></span>
+            <div>
+              <p class="text-slate-300 font-medium">Contributing</p>
+              <p class="text-slate-400 text-sm">Learn how to contribute to our projects</p>
+            </div>
+          </div>
+
+          <div class="flex items-start gap-3">
+            <span class="i-carbon-checkmark-filled text-green-400 text-xl flex-shrink-0 mt-1"
+            ></span>
+            <div>
+              <p class="text-slate-300 font-medium">Technical Support</p>
+              <p class="text-slate-400 text-sm">Get help with our tools and libraries</p>
+            </div>
+          </div>
+
+          <div class="flex items-start gap-3">
+            <span class="i-carbon-checkmark-filled text-green-400 text-xl flex-shrink-0 mt-1"
+            ></span>
+            <div>
+              <p class="text-slate-300 font-medium">Media Inquiries</p>
+              <p class="text-slate-400 text-sm">Press, interviews, or features</p>
+            </div>
+          </div>
+
+          <div class="flex items-start gap-3">
+            <span class="i-carbon-checkmark-filled text-green-400 text-xl flex-shrink-0 mt-1"
+            ></span>
+            <div>
+              <p class="text-slate-300 font-medium">Sponsorship</p>
+              <p class="text-slate-400 text-sm">Support our open-source work</p>
+            </div>
+          </div>
+
+          <div class="flex items-start gap-3">
+            <span class="i-carbon-checkmark-filled text-green-400 text-xl flex-shrink-0 mt-1"
+            ></span>
+            <div>
+              <p class="text-slate-300 font-medium">General Questions</p>
+              <p class="text-slate-400 text-sm">Anything else on your mind!</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Response Time Notice -->
+  <section class="section bg-slate-950/50">
+    <div class="container-narrow">
+      <div class="card border-blue-500/30">
+        <div class="flex items-start gap-4">
+          <div class="text-3xl text-blue-400">
+            <span class="i-carbon-information"></span>
+          </div>
+          <div>
+            <h3 class="text-lg font-semibold text-white mb-2">Response Time</h3>
+            <p class="text-slate-300 text-sm leading-relaxed">
+              We're a volunteer-run organization working across different time zones. While we try
+              to respond to all inquiries within 48-72 hours, please be patient as we balance our
+              day jobs with our passion for open source. For urgent technical issues, please use
+              GitHub issues for faster community support.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Quick Links -->
+  <section class="section">
+    <div class="container-narrow text-center">
+      <h2 class="text-2xl font-bold text-slate-100 mb-6">Before You Reach Out</h2>
+      <p class="text-slate-400 mb-6">You might find what you're looking for in these resources:</p>
+      <div class="flex flex-wrap gap-4 justify-center">
+        <a href="/projects" class="btn-secondary">
+          <span class="i-carbon-folder"></span>
+          <span>View Projects</span>
+        </a>
+        <a href="/blog" class="btn-secondary">
+          <span class="i-carbon-document"></span>
+          <span>Read Our Blog</span>
+        </a>
+        <a href="/about" class="btn-secondary">
+          <span class="i-carbon-information"></span>
+          <span>About Us</span>
+        </a>
+        <a
+          href="https://github.com/KohakuBlueleaf"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="btn-secondary"
+        >
+          <span class="i-carbon-logo-github"></span>
+          <span>GitHub Docs</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <slot name="footer">
+    <Footer client:load />
+  </slot>
+</Base>

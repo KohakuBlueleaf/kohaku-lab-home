@@ -1,16 +1,242 @@
 ---
+/**
+ * Homepage
+ * Main landing page for Kohaku Lab
+ */
 
+import Base from '../layouts/Base.astro';
+import Navbar from '../components/Navbar.vue';
+import Footer from '../components/Footer.vue';
+import Hero from '../components/Hero.vue';
+import ProjectCard from '../components/ProjectCard.vue';
+import MemberCard from '../components/MemberCard.vue';
+import BlogPostCard from '../components/BlogPostCard.vue';
+
+import { projects, getFeaturedProjects } from '../config/projects.config.js';
+import { members, getCoreMembers } from '../config/members.config.js';
+import { sortByDate } from '../utils/helpers.js';
+
+// Get featured projects (first 3)
+const featuredProjects = getFeaturedProjects().slice(0, 3);
+
+// Get core team members (first 3)
+const coreMembers = getCoreMembers().slice(0, 3);
+
+// Get recent blog posts (mock data for now - will be replaced with real posts)
+const recentPosts = [
+  {
+    title: 'Introducing Kohaku Lab',
+    description:
+      'Welcome to our virtual AI/ML research lab. Learn about our mission, projects, and how you can get involved in open-source AI development.',
+    pubDate: '2025-01-15',
+    slug: 'introducing-kohaku-lab',
+    tags: ['announcement', 'about'],
+    readingTime: 5,
+  },
+  {
+    title: 'Building HDM: Training Text-to-Image Models at Home',
+    description:
+      'Discover how we trained a high-quality text-to-image diffusion model using accessible hardware. A comprehensive guide to democratizing AI.',
+    pubDate: '2025-01-10',
+    slug: 'building-hdm',
+    thumbnail: '/assets/blog/hdm-thumb.jpg',
+    tags: ['AI', 'Stable Diffusion', 'Research'],
+    readingTime: 12,
+  },
+  {
+    title: 'LyCORIS: Advanced Fine-Tuning Techniques',
+    description:
+      'Exploring novel approaches to neural network fine-tuning that go beyond conventional LoRA methods, with improved efficiency and quality.',
+    pubDate: '2025-01-05',
+    slug: 'lycoris-advanced-fine-tuning',
+    thumbnail: '/assets/blog/lycoris-thumb.jpg',
+    tags: ['Neural Networks', 'Research', 'Tutorial'],
+    readingTime: 15,
+  },
+];
+
+// Stats for hero section
+const stats = {
+  projects: projects.length,
+  contributors: members.length,
+  stars: 1500, // This could be fetched from GitHub API in production
+};
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Base>
+  <!-- Navigation -->
+  <Navbar slot="nav" client:load />
+
+  <!-- Hero Section -->
+  <Hero client:visible stats={stats} />
+
+  <!-- Featured Projects Section -->
+  <section class="section bg-slate-950/50">
+    <div class="container-section">
+      <div class="text-center mb-12">
+        <h2 class="section-title">Featured Projects</h2>
+        <p class="section-subtitle">
+          Explore our latest open-source contributions to the AI/ML community
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+        {featuredProjects.map(project => <ProjectCard client:visible project={project} />)}
+      </div>
+
+      <div class="text-center">
+        <a href="/projects" class="btn-primary">
+          <span class="i-carbon-folder"></span>
+          <span>View All Projects</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Us Section -->
+  <section class="section">
+    <div class="container-section">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <!-- Content -->
+        <div>
+          <h2 class="section-title text-left">
+            About <span class="gradient-text">Kohaku Lab</span>
+          </h2>
+          <div class="space-y-4 text-slate-300 leading-relaxed">
+            <p>
+              Kohaku Lab is a <strong class="text-white">virtual research laboratory</strong> where AI/ML
+              enthusiasts from around the world come together to build innovative open-source tools and
+              conduct cutting-edge research.
+            </p>
+            <p>
+              We believe in <strong class="text-white">democratizing AI technology</strong> by making
+              advanced tools accessible to everyone. Our team collaborates entirely online, proving that
+              groundbreaking work doesn't require a physical location.
+            </p>
+            <p>
+              From developing new training techniques to creating practical applications, we're
+              committed to pushing the boundaries of what's possible with AI while maintaining our
+              core value: <strong class="text-white">100% open source</strong>.
+            </p>
+          </div>
+          <div class="mt-8">
+            <a href="/about" class="btn-secondary">
+              <span>Learn More About Us</span>
+              <span class="i-carbon-arrow-right"></span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Key Points -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div class="card hover:border-blue-500/50 transition-colors">
+            <div class="text-4xl mb-3">
+              <span class="i-carbon-earth text-blue-400"></span>
+            </div>
+            <h3 class="text-lg font-semibold text-white mb-2">Virtual First</h3>
+            <p class="text-slate-400 text-sm">Global collaboration without geographic boundaries</p>
+          </div>
+
+          <div class="card hover:border-blue-500/50 transition-colors">
+            <div class="text-4xl mb-3">
+              <span class="i-carbon-code text-green-400"></span>
+            </div>
+            <h3 class="text-lg font-semibold text-white mb-2">Open Source</h3>
+            <p class="text-slate-400 text-sm">All our work is freely available to everyone</p>
+          </div>
+
+          <div class="card hover:border-blue-500/50 transition-colors">
+            <div class="text-4xl mb-3">
+              <span class="i-carbon-research text-purple-400"></span>
+            </div>
+            <h3 class="text-lg font-semibold text-white mb-2">Research Driven</h3>
+            <p class="text-slate-400 text-sm">Pushing boundaries with innovative techniques</p>
+          </div>
+
+          <div class="card hover:border-blue-500/50 transition-colors">
+            <div class="text-4xl mb-3">
+              <span class="i-carbon-collaborate text-pink-400"></span>
+            </div>
+            <h3 class="text-lg font-semibold text-white mb-2">Community Focused</h3>
+            <p class="text-slate-400 text-sm">Built by and for the AI/ML community</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Team Section -->
+  <section class="section bg-slate-950/50">
+    <div class="container-section">
+      <div class="text-center mb-12">
+        <h2 class="section-title">Meet Our Team</h2>
+        <p class="section-subtitle">The passionate individuals behind Kohaku Lab</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+        {coreMembers.map(member => <MemberCard client:visible member={member} />)}
+      </div>
+
+      <div class="text-center">
+        <a href="/members" class="btn-primary">
+          <span class="i-carbon-user-multiple"></span>
+          <span>View All Members</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Recent Blog Posts Section -->
+  <section class="section">
+    <div class="container-section">
+      <div class="text-center mb-12">
+        <h2 class="section-title">Latest from Our Blog</h2>
+        <p class="section-subtitle">Insights, tutorials, and updates from the Kohaku Lab team</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+        {recentPosts.map(post => <BlogPostCard client:visible post={post} />)}
+      </div>
+
+      <div class="text-center">
+        <a href="/blog" class="btn-primary">
+          <span class="i-carbon-document"></span>
+          <span>View All Posts</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section
+    class="section bg-gradient-to-br from-blue-900/30 to-purple-900/30 border-y border-blue-500/20"
+  >
+    <div class="container-narrow text-center">
+      <h2 class="text-3xl sm:text-4xl font-bold text-white mb-4">Ready to Get Involved?</h2>
+      <p class="text-lg text-slate-300 mb-8">
+        Join our community of AI/ML enthusiasts and contribute to open-source projects that are
+        making a difference.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a
+          href="https://github.com/KohakuBlueleaf"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="btn-primary"
+        >
+          <span class="i-carbon-logo-github"></span>
+          <span>Explore on GitHub</span>
+        </a>
+        <a href="/contact" class="btn-outline">
+          <span class="i-carbon-email"></span>
+          <span>Get in Touch</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <slot name="footer">
+    <Footer client:load />
+  </slot>
+</Base>

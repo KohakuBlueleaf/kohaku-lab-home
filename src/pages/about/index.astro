@@ -1,0 +1,226 @@
+---
+/**
+ * About Page
+ * Detailed information about Kohaku Lab
+ */
+
+import Base from '../../layouts/Base.astro';
+import Navbar from '../../components/Navbar.vue';
+import Footer from '../../components/Footer.vue';
+import GradientText from '../../components/GradientText.vue';
+---
+
+<Base
+  title="About Us | Kohaku Lab"
+  description="Learn about Kohaku Lab's mission, vision, and how we're working to democratize AI technology through open-source collaboration."
+>
+  <!-- Navigation -->
+  <Navbar slot="nav" client:load />
+
+  <!-- Page Header -->
+  <section
+    class="py-12 bg-gradient-to-br from-blue-900/30 to-purple-900/30 border-b border-blue-500/20"
+  >
+    <div class="container-section text-center">
+      <h1 class="text-4xl sm:text-5xl font-bold mb-4">
+        <span class="gradient-text">About Kohaku Lab</span>
+      </h1>
+      <p class="text-lg text-slate-300 max-w-2xl mx-auto">
+        A virtual research lab on a mission to democratize AI technology
+      </p>
+    </div>
+  </section>
+
+  <!-- Our Story -->
+  <section class="section">
+    <div class="container-narrow">
+      <h2 class="text-3xl font-bold text-slate-100 mb-6">Our Story</h2>
+      <div class="space-y-4 text-slate-300 leading-relaxed">
+        <p>
+          Kohaku Lab was born from a simple belief: that groundbreaking AI research and development
+          doesn't require a physical lab, expensive equipment, or institutional backing. All it
+          needs is passionate people, open collaboration, and a commitment to sharing knowledge.
+        </p>
+        <p>
+          What started as a small group of AI/ML enthusiasts meeting online has grown into a
+          thriving virtual laboratory. We've built tools that thousands use, published research that
+          advances the field, and created a community that proves innovation can happen anywhere.
+        </p>
+        <p>
+          Our name, "Kohaku," reflects our foundation and values. Led by KohakuBlueLeaf and driven
+          by contributors from around the world, we're united by our love for AI/ML and our belief
+          that technology should be accessible to everyone.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Mission & Vision -->
+  <section class="section bg-slate-950/50">
+    <div class="container-section">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <!-- Mission -->
+        <div class="card">
+          <div class="text-4xl mb-4">
+            <span class="i-carbon-target text-blue-400"></span>
+          </div>
+          <h3 class="text-2xl font-bold text-white mb-4">Our Mission</h3>
+          <p class="text-slate-300 leading-relaxed">
+            To democratize AI technology by creating high-quality, open-source tools and research
+            that anyone can use, learn from, and build upon. We believe that AI should be accessible
+            to everyone, not just those with access to vast resources.
+          </p>
+        </div>
+
+        <!-- Vision -->
+        <div class="card">
+          <div class="text-4xl mb-4">
+            <span class="i-carbon-light text-purple-400"></span>
+          </div>
+          <h3 class="text-2xl font-bold text-white mb-4">Our Vision</h3>
+          <p class="text-slate-300 leading-relaxed">
+            A future where anyone, anywhere can contribute to and benefit from AI advancement. Where
+            virtual collaboration is as valuable as physical presence, and where the best ideas win
+            regardless of their origin.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Our Values -->
+  <section class="section">
+    <div class="container-section">
+      <h2 class="text-3xl font-bold text-slate-100 mb-8 text-center">Our Values</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="text-center">
+          <div class="text-5xl mb-4">
+            <span class="i-carbon-open-panel-filled-left text-green-400"></span>
+          </div>
+          <h3 class="text-lg font-semibold text-white mb-2">Open Source</h3>
+          <p class="text-slate-400 text-sm">100% of our work is open and freely available</p>
+        </div>
+
+        <div class="text-center">
+          <div class="text-5xl mb-4">
+            <span class="i-carbon-collaborate text-pink-400"></span>
+          </div>
+          <h3 class="text-lg font-semibold text-white mb-2">Collaboration</h3>
+          <p class="text-slate-400 text-sm">We believe in the power of collective intelligence</p>
+        </div>
+
+        <div class="text-center">
+          <div class="text-5xl mb-4">
+            <span class="i-carbon-data-quality-definition text-blue-400"></span>
+          </div>
+          <h3 class="text-lg font-semibold text-white mb-2">Quality</h3>
+          <p class="text-slate-400 text-sm">Commitment to excellence in everything we build</p>
+        </div>
+
+        <div class="text-center">
+          <div class="text-5xl mb-4">
+            <span class="i-carbon-education text-yellow-400"></span>
+          </div>
+          <h3 class="text-lg font-semibold text-white mb-2">Education</h3>
+          <p class="text-slate-400 text-sm">Sharing knowledge to empower others</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How We Work -->
+  <section class="section bg-slate-950/50">
+    <div class="container-narrow">
+      <h2 class="text-3xl font-bold text-slate-100 mb-6 text-center">How We Work</h2>
+      <div class="space-y-6">
+        <div class="flex gap-4">
+          <div
+            class="flex-shrink-0 w-12 h-12 bg-blue-500/20 rounded-lg flex items-center justify-center"
+          >
+            <span class="text-2xl text-blue-400">1</span>
+          </div>
+          <div>
+            <h3 class="text-lg font-semibold text-white mb-2">Virtual Collaboration</h3>
+            <p class="text-slate-300 text-sm">
+              Our team works entirely remotely, using modern tools to communicate, collaborate, and
+              build together. Time zones don't stop us – they enable us to work around the clock.
+            </p>
+          </div>
+        </div>
+
+        <div class="flex gap-4">
+          <div
+            class="flex-shrink-0 w-12 h-12 bg-blue-500/20 rounded-lg flex items-center justify-center"
+          >
+            <span class="text-2xl text-blue-400">2</span>
+          </div>
+          <div>
+            <h3 class="text-lg font-semibold text-white mb-2">Open Development</h3>
+            <p class="text-slate-300 text-sm">
+              All our projects are developed in the open on GitHub. Anyone can see our progress,
+              contribute code, report issues, or suggest improvements.
+            </p>
+          </div>
+        </div>
+
+        <div class="flex gap-4">
+          <div
+            class="flex-shrink-0 w-12 h-12 bg-blue-500/20 rounded-lg flex items-center justify-center"
+          >
+            <span class="text-2xl text-blue-400">3</span>
+          </div>
+          <div>
+            <h3 class="text-lg font-semibold text-white mb-2">Community Driven</h3>
+            <p class="text-slate-300 text-sm">
+              We listen to our users and contributors. The best ideas come from the community, and
+              we're always open to new perspectives and approaches.
+            </p>
+          </div>
+        </div>
+
+        <div class="flex gap-4">
+          <div
+            class="flex-shrink-0 w-12 h-12 bg-blue-500/20 rounded-lg flex items-center justify-center"
+          >
+            <span class="text-2xl text-blue-400">4</span>
+          </div>
+          <div>
+            <h3 class="text-lg font-semibold text-white mb-2">Research & Practice</h3>
+            <p class="text-slate-300 text-sm">
+              We balance theoretical research with practical applications, ensuring our work has
+              real-world impact while advancing the state of the art.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Join Us CTA -->
+  <section class="section">
+    <div class="container-narrow text-center">
+      <div class="card bg-gradient-to-br from-blue-900/30 to-purple-900/30 border-blue-500/20">
+        <h2 class="text-2xl sm:text-3xl font-bold text-white mb-4">Be Part of Our Story</h2>
+        <p class="text-slate-300 mb-6">
+          Whether you're a researcher, developer, student, or just passionate about AI, there's a
+          place for you at Kohaku Lab. Join us in building the future of AI.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="/projects" class="btn-primary">
+            <span class="i-carbon-folder"></span>
+            <span>Explore Our Projects</span>
+          </a>
+          <a href="/contact" class="btn-secondary">
+            <span class="i-carbon-email"></span>
+            <span>Get in Touch</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <slot name="footer">
+    <Footer client:load />
+  </slot>
+</Base>
