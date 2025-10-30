@@ -1,0 +1,24 @@
+{
+  "name": "kohaku-lab-homepage",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/vue": "^5.1.2",
+    "astro": "^5.15.2",
+    "element-plus": "^2.11.5",
+    "vue": "^3.5.22"
+  },
+  "devDependencies": {
+    "@iconify-json/carbon": "^1.2.14",
+    "@iconify-json/ep": "^1.2.3",
+    "@unocss/astro": "^66.5.4",
+    "@unocss/preset-icons": "^66.5.4",
+    "unocss": "^66.5.4"
+  }
+}
