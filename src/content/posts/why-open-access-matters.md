@@ -84,7 +84,7 @@ Some projects use Creative Commons NC or similar when:
 - We want to prevent pure commercial exploitation
 - We're open to commercial licensing partnerships
 
-**Example**: Pre-trained models, research implementations
+**Example**: Pre-trained models, research implementations, utilities platforms
 
 ### Case-by-Case
 

@@ -60,9 +60,8 @@ That's it. If you're passionate about AI/ML and want to build cool stuff with li
 
 We'll be sharing more about our individual projects, technical deep-dives, research insights, and lessons learned. Stay tuned for posts about:
 
-- Training diffusion models on consumer hardware
-- Advanced fine-tuning techniques
-- Building full-stack ML platforms
+- The road of HDM
+- A real "hub", a full-stack ML platforms
 - And whatever else we find interesting!
 
 Thanks for stopping by. Hope to see you around!
