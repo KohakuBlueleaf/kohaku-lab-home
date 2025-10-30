@@ -38,7 +38,7 @@
 
         <!-- Mobile Menu Button -->
         <button
-          @click="toggleMobileMenu"
+          @click.stop="toggleMobileMenu"
           class="md:hidden text-slate-300 hover:text-white transition-colors p-2 flex items-center justify-center"
           aria-label="Toggle menu"
           :aria-expanded="mobileMenuOpen"
@@ -70,7 +70,6 @@
               :href="link.href"
               class="text-slate-300 hover:text-white transition-colors font-medium py-2"
               :class="{ 'text-white': isActivePath(link.href) }"
-              @click="closeMobileMenu"
             >
               {{ link.label }}
             </a>

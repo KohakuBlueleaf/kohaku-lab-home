@@ -19,14 +19,21 @@
  */
 export const collaborators = [
   {
-    name: 'DeepGHS',
-    description: '',
-    logoUrl:
-      'https://cdn-avatars.huggingface.co/v1/production/uploads/1673678946779-6391f19aba933dc6fd14c618.jpeg',
-    websiteUrl: 'https://huggingface.co/deepghs',
-    tags: ['Research', 'Academic', 'Anime'],
-    active: true,
-  },
+  name: 'DeepGHS',
+  description:
+    'DeepGHS (Deep Generative anime Hobbyist Syndicate) is a passion-driven, non-profit open-source technical collective focused on building AI infrastructure for the anime/2D domain. We specialize in anime computer vision technologies and are dedicated to developing open-source tools, models, and datasets for the anime community.',
+  logoUrl: 'https://cdn.xinhe-info.cn/dev/DeepGHS.png',
+  websiteUrl: 'https://huggingface.co',
+  tags: [
+    'AI Infrastructure',
+    'Computer Vision For Anime', 
+    'Open Source',
+    'Anime MLOps',
+    'Non-profit',
+    'Research'
+  ],
+  active: true,
+},
   {
     name: 'Comfy Org',
     description:
