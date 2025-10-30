@@ -37,20 +37,20 @@ import GradientText from '../../components/GradientText.vue';
       <h2 class="text-3xl font-bold text-slate-100 mb-6">Our Story</h2>
       <div class="space-y-4 text-slate-300 leading-relaxed">
         <p>
-          Kohaku Lab wasn't planned - it just happened. A bunch of AI/ML enthusiasts met online,
-          started building things together, and realized we worked pretty well as a virtual team. No
-          corporate backing, no institutional affiliation, just people who love what they do.
+          Kohaku Lab wasn't planned - it just happened. A bunch of AI/ML enthusiasts met online and
+          realized we all had the same frustrations: we wanted tools that didn't exist, or existing
+          tools had annoying limitations or policy shifts.
         </p>
         <p>
-          Powered by passion - that's really what drives us. We work on projects because they're
-          interesting, not because there's a business plan. From training diffusion models on
-          consumer hardware to building full-stack ML platforms, we do it because it's fun and we
-          learn a ton.
+          So we started building what we wanted to use. We all use text-to-image models? Train one
+          at home (HDM). Frustrated with HuggingFace's policy changes? Build our own model hub
+          (KohakuHub). Tired of W&B limitations? Create our own experiment tracker (KohakuBoard).
+          <strong class="text-white">Scratch your own itch.</strong>
         </p>
         <p>
-          Led by KohakuBlueLeaf and joined by contributors from around the world, we've somehow
-          managed to create tools that people actually use (2M+ downloads on HuggingFace, 7K+ GitHub
-          stars). Not bad for a group of hobbyists working in their free time.
+          Led by KohakuBlueLeaf and joined by contributors from around the world, we've built tools
+          that we use daily - and apparently others find them useful too (2M+ downloads on
+          HuggingFace, 7K+ GitHub stars). Not bad for solving our own problems.
         </p>
       </div>
     </div>
@@ -93,37 +93,29 @@ import GradientText from '../../components/GradientText.vue';
   <section class="section">
     <div class="container-section">
       <h2 class="text-3xl font-bold text-slate-100 mb-8 text-center">Our Values</h2>
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
         <div class="text-center">
-          <div class="text-5xl mb-4">
-            <span class="i-carbon-open-panel-filled-left text-green-400"></span>
+          <div class="text-6xl mb-4">
+            <span class="i-carbon-favorite text-red-400"></span>
           </div>
-          <h3 class="text-lg font-semibold text-white mb-2">Open Access</h3>
-          <p class="text-slate-400 text-sm">Everything we create is freely accessible</p>
+          <h3 class="text-2xl font-bold text-white mb-3">Passion</h3>
+          <p class="text-slate-400">Build what excites you, work on what interests you</p>
         </div>
 
         <div class="text-center">
-          <div class="text-5xl mb-4">
-            <span class="i-carbon-collaborate text-pink-400"></span>
+          <div class="text-6xl mb-4">
+            <span class="i-carbon-face-satisfied text-yellow-400"></span>
           </div>
-          <h3 class="text-lg font-semibold text-white mb-2">Collaboration</h3>
-          <p class="text-slate-400 text-sm">We believe in the power of collective intelligence</p>
+          <h3 class="text-2xl font-bold text-white mb-3">Joy</h3>
+          <p class="text-slate-400">If it's not fun, take a break. Happiness first</p>
         </div>
 
         <div class="text-center">
-          <div class="text-5xl mb-4">
-            <span class="i-carbon-data-quality-definition text-blue-400"></span>
+          <div class="text-6xl mb-4">
+            <span class="i-carbon-tree-view-alt text-blue-400"></span>
           </div>
-          <h3 class="text-lg font-semibold text-white mb-2">Quality</h3>
-          <p class="text-slate-400 text-sm">Commitment to excellence in everything we build</p>
-        </div>
-
-        <div class="text-center">
-          <div class="text-5xl mb-4">
-            <span class="i-carbon-education text-yellow-400"></span>
-          </div>
-          <h3 class="text-lg font-semibold text-white mb-2">Education</h3>
-          <p class="text-slate-400 text-sm">Sharing knowledge to empower others</p>
+          <h3 class="text-2xl font-bold text-white mb-3">Evolution</h3>
+          <p class="text-slate-400">New tech for new projects. Let old projects be</p>
         </div>
       </div>
     </div>

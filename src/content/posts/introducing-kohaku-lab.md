@@ -10,35 +10,42 @@ readingTime: 5
 
 # Welcome to Kohaku Lab
 
-Hey everyone! Welcome to Kohaku Lab - a virtual laboratory made by AI/ML enthusiasts from around the internet.
+Hey everyone! Welcome to Kohaku Lab - a virtual laboratory made by AI/ML enthusiasts who build tools we actually want to use.
 
 ## What Is Kohaku Lab?
 
-We're not your typical research lab. There's no physical building, no corporate backing, and no formal hierarchy. Just a group of people who love AI/ML and enjoy building cool stuff together.
+We're not your typical research lab. There's no physical building, no corporate backing, and no formal hierarchy. Just a group of people who got frustrated with existing tools and decided to build better ones.
 
 ### How It Started
 
-It started simply: a few enthusiasts chatting online about machine learning, sharing ideas, and eventually deciding to collaborate on projects. What began as casual conversations turned into real projects with real impact.
+Simple: we all had itches to scratch.
 
-## Our Projects
+We all use text-to-image models. Commercial APIs are expensive, existing open models had limitations. So we trained **HDM** at home on consumer hardware.
 
-We've built some pretty cool things:
+We all used HuggingFace for model hosting. Then their policies shifted in ways we didn't like. So we built **KohakuHub**.
 
-- **LyCORIS**: Advanced fine-tuning techniques that go beyond conventional LoRA methods
-- **HDM**: A text-to-image model trained at home on consumer hardware
-- **KohakuHub**: An open platform for hosting and sharing ML models
-- **KohakuBoard**: Experiment tracking and visualization for ML research
+We all used Weights & Biases for experiment tracking. Limitations and pricing got annoying. So we created **KohakuBoard**.
+
+We needed better fine-tuning techniques. So we developed **LyCORIS**.
+
+**Pattern:** Need a tool? Build it yourself. Share it openly. Use it daily.
+
+That's Kohaku Lab.
 
 ## The Philosophy
 
-**Powered by passion.** That's really what it comes down to. We build things because:
+We build things we want to use. That's the whole philosophy.
 
-1. They're interesting to us
-2. We learn a ton in the process
-3. It's fun to create tools that others can use
-4. We believe good tools should be accessible to everyone
+If we're not using it ourselves, why would we build it? If it doesn't solve a real problem we have, what's the point?
 
-No grand mission statements, no five-year plans. Just people doing what they love.
+This means:
+
+1. **We're our own users** - We know if something sucks because we use it daily
+2. **Real problems only** - No building for the sake of building
+3. **Practical over theoretical** - If it doesn't work in practice, it doesn't work
+4. **Share openly** - If it helps us, it might help others too
+
+No grand mission statements, no five-year plans. Just people solving their own problems and sharing the solutions.
 
 ## Open Access
 

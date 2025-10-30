@@ -22,7 +22,7 @@ export const siteInfo = {
 export const heroStats = {
   githubStars: '7K', // Sum of all members' GitHub stars
   downloads: '2M', // HuggingFace downloads
-  projects: '10+', // Number of active projects (can be dynamic or static)
+  projects: '5', // Number of active projects (can be dynamic or static)
   openAccess: '100%', // Percentage of open access projects
 };
 

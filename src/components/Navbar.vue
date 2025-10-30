@@ -39,25 +39,30 @@
         <!-- Mobile Menu Button -->
         <button
           @click="toggleMobileMenu"
-          class="md:hidden text-slate-300 hover:text-white transition-colors p-2"
+          class="md:hidden text-slate-300 hover:text-white transition-colors p-2 flex items-center justify-center"
           aria-label="Toggle menu"
-          aria-expanded="mobileMenuOpen"
+          :aria-expanded="mobileMenuOpen"
         >
-          <span v-if="!mobileMenuOpen" class="i-carbon-menu text-2xl"></span>
-          <span v-else class="i-carbon-close text-2xl"></span>
+          <span v-if="!mobileMenuOpen" class="i-carbon-menu text-2xl block"></span>
+          <span v-else class="i-carbon-close text-2xl block"></span>
         </button>
       </div>
+    </div>
 
-      <!-- Mobile Navigation -->
-      <Transition
-        enter-active-class="transition-all duration-300 ease-out"
-        enter-from-class="opacity-0 -translate-y-2"
-        enter-to-class="opacity-100 translate-y-0"
-        leave-active-class="transition-all duration-200 ease-in"
-        leave-from-class="opacity-100 translate-y-0"
-        leave-to-class="opacity-0 -translate-y-2"
+    <!-- Mobile Navigation Overlay (outside container, positioned absolutely) -->
+    <Transition
+      enter-active-class="transition-all duration-300 ease-out"
+      enter-from-class="opacity-0 -translate-y-4"
+      enter-to-class="opacity-100 translate-y-0"
+      leave-active-class="transition-all duration-200 ease-in"
+      leave-from-class="opacity-100 translate-y-0"
+      leave-to-class="opacity-0 -translate-y-4"
+    >
+      <div
+        v-if="mobileMenuOpen"
+        class="md:hidden absolute top-full left-0 right-0 bg-slate-900/98 backdrop-blur-md border-b border-slate-800 shadow-xl z-40"
       >
-        <div v-if="mobileMenuOpen" class="md:hidden py-4 border-t border-slate-800">
+        <div class="container-base py-6">
           <div class="flex flex-col gap-3">
             <a
               v-for="link in navLinks"
@@ -82,8 +87,8 @@
             </a>
           </div>
         </div>
-      </Transition>
-    </div>
+      </div>
+    </Transition>
   </nav>
 </template>
 

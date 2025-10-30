@@ -55,7 +55,7 @@
           <div class="text-3xl sm:text-4xl font-bold gradient-text mb-2">
             {{ stats.githubStars }}+
           </div>
-          <div class="text-sm text-slate-400">GitHub Stars</div>
+          <div class="text-sm text-slate-400">Github Stars of Members</div>
         </div>
         <div class="stat-item">
           <div class="text-3xl sm:text-4xl font-bold gradient-text mb-2">
@@ -118,6 +118,16 @@ const props = defineProps({
 }
 
 .stat-item {
-  @apply text-center p-4 rounded-lg bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 hover:border-slate-600 transition-all;
+  text-align: center;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  background-color: rgba(30, 41, 59, 0.5);
+  backdrop-filter: blur(4px);
+  border: 1px solid rgba(51, 65, 85, 0.5);
+  transition: all 0.3s;
+}
+
+.stat-item:hover {
+  border-color: #475569;
 }
 </style>

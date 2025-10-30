@@ -88,6 +88,90 @@ export const members = [
     core: false,
     location: 'Taiwan',
   },
+  {
+    name: 'CMander',
+    role: 'Member',
+    avatar: '',
+    bio: 'Evolve together with agents.',
+    expertise: ['Large Language Models', 'Agent', 'Agentic RL', 'Python', 'Open Source'],
+    social: [
+      {
+        platform: 'github',
+        url: 'https: //github.com/CMander02',
+        icon: 'i-carbon-logo-github',
+      },
+      {
+        platform: 'huggingface',
+        url: 'https: //huggingface.co/CMander02',
+        icon: 'i-carbon-model',
+      },
+      {
+        platform: 'website',
+        url: '',
+        icon: 'i-carbon-earth',
+      },
+    ],
+    core: false,
+    location: 'Shanghai, China',
+  },
+  {
+    name: 'Tauska (Xuehai Wang)',
+    role: 'Machine Learning Engineer — LLM Post-Training & Data Engineering',
+    avatar: '/assets/members/tauska.jpg',
+    bio: 'Machine-learning engineer focused on agentic LLM systems for healthcare. Maintainer of OmicVerse and related open-source tooling. Health Informatics (KI–SU). Committed to reproducible, privacy-aware, open science.',
+    expertise: [
+      'Large Language Models',
+      'Post-Training (SFT/DPO/RLHF)',
+      'Agentic Workflows',
+      'Long-Context & Retrieval',
+      'Data Engineering',
+      'Health Informatics',
+      'Multi-omics Integration',
+      'Python',
+      'R',
+      'Open Source',
+    ],
+    social: [
+      {
+        platform: 'github',
+        url: 'https://github.com/HendricksJudy',
+        icon: 'i-carbon-logo-github',
+      },
+      {
+        platform: 'website',
+        url: 'https://ki.se/en/people/xuehai-wang',
+        icon: 'i-carbon-earth',
+      },
+      {
+        platform: 'project',
+        url: 'https://github.com/HendricksJudy/omicverse',
+        icon: 'i-carbon-cube',
+      },
+    ],
+    core: null,
+    location: 'Stockholm, Sweden',
+  },
+  {
+    name: 'ntrwansui',
+    role: 'Member',
+    avatar: 'https://cdn.xinhe-info.cn/dev/2bfee3986f30f2ee7fa4b2a9d4f12355.png',
+    bio: 'moe is justice',
+    expertise: ['Full Stack Development', 'Member of DeepGHS'],
+    social: [
+      {
+        platform: 'github',
+        url: 'https://github.com/ntrwansuiBC',
+        icon: 'i-carbon-logo-github',
+      },
+      {
+        platform: 'huggingface',
+        url: 'https://deepghs.org/',
+        icon: 'i-carbon-model',
+      },
+    ],
+    core: false,
+    location: 'Shanghai, China',
+  },
   // Add more members here as the team grows
 ];
 
