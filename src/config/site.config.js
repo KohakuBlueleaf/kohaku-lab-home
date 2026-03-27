@@ -22,7 +22,7 @@ export const siteInfo = {
 export const heroStats = {
   githubStars: '7K', // Sum of all members' GitHub stars
   downloads: '2M', // HuggingFace downloads
-  projects: '5', // Number of active projects (can be dynamic or static)
+  projects: '18', // Number of active projects (can be dynamic or static)
   openAccess: '100%', // Percentage of open access projects
 };
 
@@ -178,10 +178,12 @@ export const footer = {
   ],
 
   featuredProjects: [
-    { label: 'KohakuHub', href: 'https://github.com/KohakuBlueleaf/KohakuHub' },
-    { label: 'KohakuBoard', href: 'https://github.com/KohakuBlueleaf/KohakuBoard' },
-    { label: 'HDM', href: 'https://github.com/KohakuBlueleaf/HDM' },
     { label: 'LyCORIS', href: 'https://github.com/KohakuBlueleaf/LyCORIS' },
+    { label: 'HDM', href: 'https://github.com/KohakuBlueleaf/HDM' },
+    { label: 'TIPO', href: 'https://github.com/KohakuBlueleaf/KGen' },
+    { label: 'KohakuHub', href: 'https://github.com/KohakuBlueleaf/KohakuHub' },
+    { label: 'KohakuRiver', href: 'https://github.com/KohakuBlueleaf/KohakuRiver' },
+    { label: 'KohakuVault', href: 'https://github.com/KohakuBlueleaf/KohakuVault' },
   ],
 
   copyright: 'Kohaku Lab. Built with ♥ by enthusiasts',
