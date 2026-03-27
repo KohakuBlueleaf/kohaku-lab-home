@@ -112,10 +112,6 @@ export const projects = [
       { name: 'Python', color: 'yellow' },
       { name: 'Fullstack', color: 'green' },
     ],
-    image: {
-      src: '/assets/projects/kohakuhub.png',
-      alt: 'KohakuHub',
-    },
     members: ['KohakuBlueLeaf', 'theblackcat', 'ntrwansui'],
     collaborators: ['DeepGHS'],
     featured: true,

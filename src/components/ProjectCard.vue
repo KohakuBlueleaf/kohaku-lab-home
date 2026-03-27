@@ -5,7 +5,7 @@
     data-project-card
     :data-project-tags="JSON.stringify(project.tags.map(t => t.name))"
   >
-    <!-- Project Image -->
+    <!-- Project Image (when provided) -->
     <div
       v-if="project.image"
       class="relative overflow-hidden rounded-md mb-4 aspect-[2.4/1] bg-slate-700"
@@ -36,6 +36,13 @@
       ></div>
     </div>
 
+    <!-- Accent bar (when no image) -->
+    <div
+      v-else
+      class="h-1 rounded-full mb-4 opacity-60 group-hover:opacity-100 transition-opacity"
+      :style="{ background: accentGradient }"
+    ></div>
+
     <!-- Project Content -->
     <div class="flex-1">
       <h3
@@ -43,6 +50,10 @@
       >
         {{ project.name }}
       </h3>
+
+      <p v-if="project.subtitle" class="text-slate-300 text-sm mb-2 font-medium">
+        {{ project.subtitle }}
+      </p>
 
       <p class="text-slate-400 text-sm mb-4 line-clamp-3">
         {{ project.description }}
@@ -65,7 +76,7 @@
 </template>
 
 <script setup>
-import { ref, defineProps } from 'vue';
+import { ref, computed, defineProps } from 'vue';
 import TagBadge from './TagBadge.vue';
 
 const imageError = ref(false);
@@ -74,37 +85,33 @@ function handleImageError() {
   imageError.value = true;
 }
 
-/**
- * @typedef {Object} ProjectTag
- * @property {string} name - Tag display name
- * @property {string} color - Color key
- */
+const accentColors = {
+  red: '#f87171',
+  blue: '#60a5fa',
+  purple: '#c084fc',
+  orange: '#fb923c',
+  cyan: '#22d3ee',
+  pink: '#f472b6',
+  fuchsia: '#e879f9',
+  green: '#4ade80',
+  yellow: '#facc15',
+  lime: '#a3e635',
+  amber: '#fbbf24',
+  indigo: '#818cf8',
+};
 
-/**
- * @typedef {Object} ProjectImage
- * @property {string} src - Image source
- * @property {string} alt - Alt text
- */
-
-/**
- * @typedef {Object} Project
- * @property {string} slug - Project slug
- * @property {string} name - Project name
- * @property {string} description - Project description
- * @property {string} link - Project link
- * @property {ProjectTag[]} tags - Tags
- * @property {ProjectImage} [image] - Optional image
- */
-
-/**
- * Component props
- */
 const props = defineProps({
-  /** @type {Project} */
   project: {
     type: Object,
     required: true,
   },
+});
+
+const accentGradient = computed(() => {
+  const tags = props.project.tags || [];
+  const c1 = accentColors[tags[0]?.color] || '#60a5fa';
+  const c2 = accentColors[tags[1]?.color] || accentColors[tags[0]?.color] || '#818cf8';
+  return `linear-gradient(to right, ${c1}, ${c2})`;
 });
 </script>
 
