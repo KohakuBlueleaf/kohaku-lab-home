@@ -17,8 +17,8 @@ import { members, getCoreMembers } from '../config/members.config.js';
 import { heroStats, ctas } from '../config/site.config.js';
 import { sortByDate } from '../utils/helpers.js';
 
-// Get featured projects (first 3)
-const featuredProjects = getFeaturedProjects().slice(0, 3);
+// Get featured projects (up to 6 for two rows of 3)
+const featuredProjects = getFeaturedProjects().slice(0, 6);
 
 // Get team members (3 core + 3 non-core)
 const coreMembers = getCoreMembers().slice(0, 3);
@@ -84,11 +84,10 @@ const recentPosts = sortedBlogPosts.slice(0, 3).map(post => ({
               build tools we actually want to use ourselves.
             </p>
             <p>
-              We all use text-to-image models, so we trained HDM at home. We all used HuggingFace
-              and Weights & Biases but got frustrated with their policy shifts, so we built
-              KohakuHub and KohakuBoard. Simple as that - <strong class="text-white"
-                >scratch your own itch</strong
-              >.
+              We publish research at top venues (LyCORIS at ICLR 2024, TIPO at ICLR 2026),
+              build infrastructure we rely on daily (KohakuHub, KohakuRiver), create databases
+              and ML utilities, and even play with AI-powered board games. Simple as that -
+              <strong class="text-white">scratch your own itch</strong>.
             </p>
             <p>
               No grand mission. Just people building things they want to exist, sharing them openly,
