@@ -89,6 +89,16 @@ export const tagColors = {
     text: '#831843',
     name: 'pink',
   },
+  amber: {
+    bg: '#fcd34d',
+    text: '#78350f',
+    name: 'amber',
+  },
+  indigo: {
+    bg: '#a5b4fc',
+    text: '#312e81',
+    name: 'indigo',
+  },
 };
 
 /**
