@@ -64,22 +64,36 @@
         <TagBadge v-for="(tag, index) in project.tags" :key="index" :tag="tag" />
       </div>
 
-      <!-- Link Indicator -->
-      <div
-        class="inline-flex items-center gap-2 text-blue-400 group-hover:text-blue-300 transition-colors font-medium text-sm"
-      >
-        <span>View Details</span>
-        <span class="i-carbon-arrow-right group-hover:translate-x-1 transition-transform"></span>
+      <!-- Footer: Stats + Link -->
+      <div class="flex items-center justify-between">
+        <div v-if="stats" class="flex items-center gap-3 text-slate-400 text-sm">
+          <span class="inline-flex items-center gap-1">
+            <span class="i-carbon-star text-yellow-500"></span>
+            {{ formatCount(stats.stars) }}
+          </span>
+          <span v-if="stats.forks" class="inline-flex items-center gap-1">
+            <span class="i-carbon-branch"></span>
+            {{ formatCount(stats.forks) }}
+          </span>
+        </div>
+        <div
+          class="inline-flex items-center gap-2 text-blue-400 group-hover:text-blue-300 transition-colors font-medium text-sm"
+        >
+          <span>View Details</span>
+          <span class="i-carbon-arrow-right group-hover:translate-x-1 transition-transform"></span>
+        </div>
       </div>
     </div>
   </a>
 </template>
 
 <script setup>
-import { ref, computed, defineProps } from 'vue';
+import { ref, computed, onMounted, defineProps } from 'vue';
 import TagBadge from './TagBadge.vue';
+import { parseRepo, getStats, formatCount } from '../utils/github-stats.js';
 
 const imageError = ref(false);
+const stats = ref(null);
 
 function handleImageError() {
   imageError.value = true;
@@ -112,6 +126,11 @@ const accentGradient = computed(() => {
   const c1 = accentColors[tags[0]?.color] || '#60a5fa';
   const c2 = accentColors[tags[1]?.color] || accentColors[tags[0]?.color] || '#818cf8';
   return `linear-gradient(to right, ${c1}, ${c2})`;
+});
+
+onMounted(async () => {
+  const repo = parseRepo(props.project.githubLink) || parseRepo(props.project.link);
+  stats.value = await getStats(repo);
 });
 </script>
 
